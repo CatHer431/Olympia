@@ -72,8 +72,8 @@ When making changes, please create a branch to work on it and file a PR to merge
 
 ### Frontend Team
 
-When making any changes or install any dependencies, please navigate to `client` folder before doing so.
+When making any changes or installing any dependencies, please navigate to `client` folder before doing so.
 
 ### Backend Team
 
-Similarly, when making any changes or install any dependencies, please navigate to `server` folder before doing so.
+Similarly, when making any changes or installing any dependencies, please navigate to `server` folder before doing so.

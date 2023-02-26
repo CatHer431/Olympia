@@ -3,23 +3,23 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
-        required: true,
+        required: [true, "Please enter your first name"],
         lowercase: true
     },
     lastName: {
         type: String,
-        required: true,
+        required: [true, "Please enter your last name"],
         lowercase: true
     },
     email: {
         type: String,
-        required: true,
+        required: [true, "Please enter an email"],
         unique: true,
         lowercase: true
     },
     password: {
         type: String,
-        required: true,
+        required: [true, "Please enter a password"],
         minlength: 6
     }
 });

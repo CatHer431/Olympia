@@ -24,6 +24,20 @@ const userSchema = new mongoose.Schema({
     }
 });
 
+// static method to login user
+userSchema.statics.login = async (email, password) => {
+    const user = await User.findOne({ email });
+
+    if (user) {
+        const auth = (user.password === password);
+        if (auth) {
+            return user;
+        }
+        throw Error("Invalid password");
+    }
+    throw Error("Incorrect email");
+}
+
 const User = mongoose.model('user', userSchema);
 
 module.exports = User;

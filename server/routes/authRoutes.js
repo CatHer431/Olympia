@@ -1,21 +1,14 @@
 const express = require('express');
+const { signup_get, login_get, signup_post, login_post } = require('../controllers/authController');
 
 const router = express.Router();
 
-router.get('/signup', (req, res) => {
-    res.send('signup');
-});
+router.get('/signup', signup_get);
 
-router.post('/signup', (req, res) => {
-    res.send('create account');
-});
+router.post('/signup', signup_post);
 
-router.get('/login', (req, res) => {
-    res.send('login');
-});
+router.get('/login', login_get);
 
-router.post('/login', (req, res) => {
-    res.send('logged in');
-})
+router.post('/login', login_post);
 
 module.exports = router;

@@ -34,7 +34,7 @@ const signup_post = async (req, res) => {
 
     try {
         const user = await User.create({ firstName, lastName, email, password });
-        res.status(201).json(user);
+        res.status(201).json({ user: user._id });
     }
     catch (err) {
         const errors = handleError(err);

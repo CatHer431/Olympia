@@ -49,7 +49,7 @@ userSchema.statics.login = async (email, password) => {
         if (auth) {
             return user;
         }
-        throw Error("Invalid password");
+        throw Error("Incorrect password");
     }
     throw Error("Incorrect email");
 }

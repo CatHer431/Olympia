@@ -35,7 +35,7 @@
     "yargs-parser": "^21.1.1"
   },
   "scripts": {
-    "dev": "concurrently \"cd server && npm run dev\" \"cd frontend && npm start\"",
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

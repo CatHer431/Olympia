@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const connectDB = require('./db.js');
 const authRoutes = require('./routes/authRoutes');
+const reservationRoutes = require('./routes/reservationRoutes');
+const roomRoutes = require('./routes/roomRoutes');
 const app = express();
 
 // Connect Database
@@ -16,6 +18,7 @@ app.use(bodyParser.urlencoded({
 // routes
 app.get('/', (req, res) => res.send('Hello world!'));
 app.use(authRoutes);
+app.use(reservationRoutes);
 
 const port = process.env.PORT || 3000;
 

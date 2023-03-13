@@ -54,10 +54,10 @@ const login_get = (req, res) => {
 }
 
 const signup_post = async (req, res) => {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, phone, email, password } = req.body;
 
     try {
-        const user = await User.create({ firstName, lastName, email, password });
+        const user = await User.create({ firstName, lastName, phone, email, password });
         res.status(201).json({ user: user._id });
     }
     catch (err) {
@@ -67,7 +67,7 @@ const signup_post = async (req, res) => {
 }
 
 const login_post = async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password, startDate, endDate} = req.body;
 
     try {
         const user = await User.login(email, password);

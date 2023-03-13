@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema({
         required: [true, "Please enter your last name"],
         lowercase: true
     },
+    phone: {
+        type: String,
+        required: [true, "Please enter your phone number"],
+    },
     email: {
         type: String,
         required: [true, "Please enter an email"],
@@ -50,6 +54,17 @@ userSchema.statics.login = async (email, password) => {
             return user;
         }
         throw Error("Incorrect password");
+    }
+    throw Error("Incorrect email");
+}
+
+
+// static method to login user
+userSchema.statics.getByEmail = async (email) => {
+    const user = await User.findOne({ email });
+
+    if (user) {
+        return user;
     }
     throw Error("Incorrect email");
 }

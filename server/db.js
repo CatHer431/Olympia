@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const db = process.env.DATABASE_URL;
 console.log(db);
 
-const connectDB = async () => {
+const connectDB = () => {
     try {
         mongoose.set('strictQuery', true);
-        await mongoose.connect(db, {
+        mongoose.connect(db, {
             useNewUrlParser: true,
         });
         console.log('MongoDB is connected ...');

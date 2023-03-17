@@ -1,0 +1,15 @@
+.badge {
+  &.MuiBadge-root {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 2;
+  }
+  & .MuiSvgIcon-root {
+    margin-left: 3px;
+    border-radius: 50%;
+    background: $purple;
+    padding: 3px;
+    fill: white;
+  }
+}

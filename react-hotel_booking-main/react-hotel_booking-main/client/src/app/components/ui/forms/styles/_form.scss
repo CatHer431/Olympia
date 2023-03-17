@@ -1,0 +1,48 @@
+.form {
+  margin-top: 15px;
+
+  .MuiFormControl-root {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .dateOfStay-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .dateOfStay {
+    width: 49%;
+  }
+}
+
+.form-card {
+  &.MuiPaper-root {
+    padding: 30px;
+    background: #fff;
+  }
+}
+
+.form-btn__reset {
+  &.MuiButtonBase-root {
+    margin-top: 15px;
+  }
+}
+
+.form-btn__submit {
+  &.MuiButtonBase-root {
+    margin-top: 15px;
+  }
+
+  &.mt-0 {
+    &.MuiButtonBase-root {
+      margin-top: 0;
+    }
+  }
+}
+
+.form__enter-error {
+  margin: 5px;
+  text-align: center;
+  color: $red;
+}

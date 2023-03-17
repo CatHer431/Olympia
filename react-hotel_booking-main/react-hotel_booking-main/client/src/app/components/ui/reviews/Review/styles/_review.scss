@@ -1,0 +1,64 @@
+.review {
+  display: flex;
+}
+
+.review__content {
+  flex: 1;
+}
+
+.review__avatar {
+  margin-right: 10px;
+}
+
+.review__user-name {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+}
+
+.review__rating {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.review__date {
+  margin-bottom: 10px;
+  color: $accent50;
+}
+
+.review__delete-btn {
+  & .MuiButtonBase-root {
+    padding: 5px;
+    margin-left: 5px;
+    background: $accent25;
+
+    &:hover {
+      background: $red;
+    }
+  }
+
+  & .MuiSvgIcon-root {
+    width: 14px;
+    height: 14px;
+    fill: white;
+  }
+}
+
+.review__edit-btn {
+  & .MuiButtonBase-root {
+    padding: 5px;
+    margin-left: 10px;
+    background: $accent25;
+
+    &:hover {
+      background: $blue;
+    }
+  }
+
+  & .MuiSvgIcon-root {
+    width: 14px;
+    height: 14px;
+    fill: white;
+  }
+}

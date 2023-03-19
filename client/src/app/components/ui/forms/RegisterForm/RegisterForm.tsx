@@ -10,20 +10,17 @@ import withPassword from '../../../common/Fields/HOC/withPassword';
 import Switch from '../../../common/Switch';
 import validatorConfig from './validatorConfig';
 
-const genderItems = [
-  { id: 'male', title: 'Man' },
-  { id: 'female', title: 'Woman' },
-];
+
 
 const initialData: UserType = {
   firstName: '',
   secondName: '',
-  gender: 'male',
   role: 'user',
   birthYear: Date.now(),
   email: '',
   password: '',
   subscribe: false,
+  gender: 'male'
 };
 
 const RegisterForm = () => {
@@ -46,7 +43,6 @@ const RegisterForm = () => {
       <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
         <InputField autoFocus name='firstName' label='First name' />
         <InputField name='secondName' label='Last name' />
-        <RadioGroup name='gender' items={genderItems} />
         <DatePickerField
           value={data.birthYear}
           onChange={handleInputChange}

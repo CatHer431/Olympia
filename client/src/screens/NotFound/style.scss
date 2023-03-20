@@ -1,0 +1,41 @@
+.not-found__container {
+    padding: 40px 0;
+    background: #fff;
+
+    h1 {
+        font-size: 80px;
+        margin-bottom: 10px;
+    }
+
+    .not-found__background {
+        background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+        height: 400px;
+        width: 80%;
+        background-position: center;
+    }
+
+    .not-found__content {
+        margin-top: -20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h3 {
+            font-size: 40px;
+        }
+
+        .not-found__link {
+            color: #fff !important;
+            padding: 10px 20px;
+            background: #39ac31;
+            margin: 20px 0;
+            display: inline-block;
+            text-decoration: none;
+            transition: all 0.2s ease;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+}

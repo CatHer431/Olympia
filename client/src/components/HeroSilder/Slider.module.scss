@@ -1,0 +1,32 @@
+.hero-slider {
+    height: 50rem;
+
+    display: flex;
+    position: relative;
+    overflow: hidden;
+
+    &__item {
+        width: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: none;
+
+        &.is-active {
+            display: block;
+        }
+    }
+
+    .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        &-title {
+            text-align: center;
+            font-size: 4.525rem;
+            line-height: 6.425rem;
+            color: #dbae3d;
+        }
+    }
+}

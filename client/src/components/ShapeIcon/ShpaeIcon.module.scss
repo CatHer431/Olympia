@@ -1,0 +1,53 @@
+@use "../../assets/styles/mixins"as mixin;
+
+.shape1 {
+    position: absolute;
+    z-index: -1;
+    opacity: .2;
+    animation: movetrans 5s linear infinite;
+
+    @include mixin.tablet {
+        display: none;
+    }
+}
+
+@keyframes movetrans {
+    0% {
+        transform: translateY(0px);
+
+    }
+
+    50% {
+        transform: translateY(20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.shape2 {
+    position: absolute;
+    z-index: -1;
+    opacity: .1;
+    animation: movescale 5s linear infinite;
+
+    @include mixin.tablet {
+        display: none;
+    }
+}
+
+@keyframes movescale {
+    0% {
+        transform: scale(1);
+
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

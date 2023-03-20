@@ -1,0 +1,46 @@
+.button-back {
+    position: fixed;
+    right: 20px;
+    bottom: -80px;
+    width: 45px;
+    height: 45px;
+    background-color: #FBB403;
+    border: none;
+    border-radius: 50%;
+    text-align: center;
+
+
+    transition: all .3s ease-out;
+
+    &.is-active {
+        bottom: 40px;
+
+    }
+
+    &::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background-color: #000;
+        border-radius: 50%;
+        border: 1px solid #FBB403;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    &:hover::before {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    i {
+        font-size: 2rem;
+        font-weight: 500;
+        color: #fff;
+    }
+
+}

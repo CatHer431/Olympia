@@ -1,0 +1,49 @@
+@use "../../assets/styles/mixins"as mixin;
+
+.pagination-list {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 50px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    padding-left: 0;
+
+    li {
+        display: inline-block;
+        font-size: 1.124rem;
+        margin: 0 6px;
+        border-radius: 4px;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 15%);
+        height: 100%;
+        background-color: #fff;
+        transition: all .2s ease;
+        cursor: pointer;
+
+        @include mixin.moblie {
+            font-size: 0.925rem;
+
+        }
+
+
+        .selected {
+            color: #fff;
+            background-color: #e3af12;
+        }
+    }
+
+    a {
+        color: #000;
+        padding: 8px 17px;
+        display: block;
+        height: 100%;
+
+        @include mixin.moblie {
+            padding: 5px 10px;
+
+        }
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "extends": ["react-app", "eslint:recommended", "airbnb"],
+    "rules": {
+        "new-cap": [2, { "capIsNewExceptions": ["List", "Map", "Set"] }],
+        "react/no-multi-comp": 0,
+        "import/default": 0,
+        "import/no-duplicates": 0,
+        "import/named": 0,
+        "import/namespace": 0,
+        "import/no-unresolved": 0,
+        "import/no-named-as-default": 2,
+        "default-case": 0,
+        "react/prop-types": 0,
+        "quotes": ["error", "double"],
+        "comma-dangle": [
+            "error",
+            {
+                "arrays": "never",
+                "objects": "never",
+                "imports": "never",
+                "exports": "never",
+                "functions": "never"
+            }
+        ],
+        "jsx-a11y/no-static-element-interactions": [
+            "error",
+            {
+                "handlers": [
+                    "onClick",
+                    "onMouseDown",
+                    "onMouseUp",
+                    "onKeyPress",
+                    "onKeyDown",
+                    "onKeyUp"
+                ]
+            }
+        ],
+        "indent": ["off", 4],
+        "linebreak-style": ["error", "windows"],
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "react/jsx-props-no-spreading": ["error", { "custom": "ignore" }],
+        "jsx-a11y/anchor-is-valid": 0,
+        "class-methods-use-this": 0,
+        "max-len": "off"
+    }
+}

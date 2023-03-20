@@ -1,0 +1,151 @@
+.shop {
+
+    &-area {
+        position: relative;
+        background-image: url("../../assets/images/banner-hotel.jpg");
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 600px;
+        z-index: 1;
+
+        &::before {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            // background-color: rgba($color: #000000, $alpha: 0.5);
+            z-index: -1;
+        }
+
+        &__title {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #fff;
+
+            ul {
+                display: flex;
+                font-size: 1rem;
+                padding-left: 0;
+
+                li:nth-child(2) {
+                    margin: 0 10px;
+                }
+            }
+        }
+    }
+
+    &-content {
+        margin-top: 60px;
+
+        &__top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+
+            .search {
+                display: flex;
+                align-items: center;
+                width: 50%;
+                padding: 5px 20px;
+                border: 1px solid rgba($color: #000000, $alpha: 0.15);
+                border-radius: 30px;
+
+                input {
+                    width: 100%;
+                    height: 100%;
+                    border: none;
+                    outline: none;
+                }
+
+                button {
+                    background: none;
+                    border: none;
+                    font-size: 1.3rem;
+                    color: rgba($color: #000000, $alpha: 0.35);
+                }
+            }
+
+            .right {
+                display: flex;
+
+                .sort {
+
+                    position: relative;
+                    cursor: pointer;
+
+                    &__select {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        width: 12rem;
+                        padding: 5px 15px;
+                        border: 1px solid rgba($color: #000000, $alpha: 0.15);
+                        border-radius: 6px;
+
+                    }
+
+                    &__list {
+                        position: absolute;
+                        background-color: #fff;
+                        padding-left: 0;
+                        width: 100%;
+                        border: 1px solid rgba($color: #000000, $alpha: 0.15);
+                        box-shadow: 0 5px 15px rgba($color: #000000, $alpha: 0.15);
+                        border-radius: 6px;
+                        transform: translateY(30px);
+                        margin-top: 10px;
+                        opacity: 0;
+                        visibility: hidden;
+                        transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+                        z-index: 999;
+
+                        li {
+                            padding: 15px 10px;
+                            font-size: 1rem;
+                            border-bottom: 1px solid rgba($color: #000000, $alpha: 0.15);
+
+                            &:last-child {
+                                border: none;
+                            }
+                        }
+
+                        &.is-active {
+                            opacity: 1;
+                            visibility: visible;
+                            transform: translateY(0);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// empty
+
+.shop_empty {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 100px 0;
+
+    img {
+        width: 50%;
+    }
+
+    h2 {
+        margin-top: 10px;
+
+    }
+}

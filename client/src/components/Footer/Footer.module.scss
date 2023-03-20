@@ -1,0 +1,131 @@
+@use "../../assets//styles/mixins"as mixin;
+
+.footer {
+    background-color: #161616;
+    padding-bottom: 30px;
+
+    .book-table {
+        background-color: #FFD655;
+        padding: 30px;
+        border-radius: 10px;
+
+        h2 {
+            margin-bottom: 20px;
+
+            @include mixin.moblie {
+                font-size: 0.925rem;
+            }
+        }
+
+        p {
+            color: #4b4b4b;
+            line-height: 1.8;
+
+            @include mixin.moblie {
+                font-size: 0.825rem;
+            }
+        }
+
+        img {
+            width: 50%;
+
+            @include mixin.tablet {
+                width: 100%;
+            }
+        }
+
+        &__btn {
+            margin-top: 20px;
+
+            a {
+                display: inline-block;
+                background-color: #fff;
+                padding: 10px 20px;
+                color: #000;
+                border-radius: 30px;
+                transition: all .5s;
+
+                @include mixin.moblie {
+                    padding: 6px 10px;
+                    font-size: 0.725rem;
+                }
+
+                &:hover {
+                    background-color: #000;
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    &-table {
+        padding-left: 0;
+        li:first-child{
+            font-weight: 500;
+            font-size: 16px;
+
+        }
+
+        li {
+            position: relative;
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 14px;
+
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &::before {
+                position: absolute;
+                content: "";
+                width: 50px;
+                height: 1px;
+                border-bottom: 1px dashed #fff;
+                margin: auto;
+                top: 12px;
+                left: 0;
+                right: 0;
+            }
+
+            span {
+                color: #FFD655;
+                float: right;
+            }
+        }
+    }
+
+    &-info {
+        h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        &__content {
+            padding-left: 0;
+            margin-bottom: 30px;
+
+            li {
+                display: flex;
+                margin-bottom: 20px;
+                color: #fff;
+
+                i {
+                    font-size: 1.875rem;
+                    color: #FFD655;
+                    margin-right: 13px;
+                }
+            }
+        }
+
+        .social {
+            i {
+                font-size: 2rem;
+                margin-right: 20px;
+            }
+        }
+    }
+}

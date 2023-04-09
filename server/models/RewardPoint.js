@@ -25,8 +25,22 @@ rewardPointSchema.pre('save', async function (next) {
     next();
 })
 
+// get reservation by id
+rewardPointSchema.statics.getByEmail = async (email) => {
+    const result = await RewardPoint.findOne({ email: email });
+    return result;
+}
 
+rewardPointSchema.statics.updateRewardPoint = async (email, rewardPoint) => {
+    await RewardPoint.findOneAndUpdate({ email: email }, 
+        {
+            user_id: rewardPoint.user_id, 
+            email: email,
+            point: rewardPoint.point
+        }
+    );
+}
 
-const RewardPoint = mongoose.model('payments', rewardPointSchema);
+const RewardPoint = mongoose.model('rewardPoints', rewardPointSchema);
 
 module.exports = RewardPoint;

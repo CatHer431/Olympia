@@ -2,6 +2,7 @@ const Reservation = require('../models/Reservation');
 const User = require('../models/User');
 const Room = require('../models/Room');
 const Hotel = require('../models/Hotel');
+const Payment =require('../models/Payment');
 
 // create new reservation
 const newReservation = async (req, res) => {
@@ -28,6 +29,7 @@ const newReservation = async (req, res) => {
             room.discountPercent = 0;
         var totalPrice = days * (room.price - room.discountPercent / 100 * room.price);
         // create reservation if book request is valid
+        
         const reservation = await Reservation.create({
                 user: user,
                 hotel: hotel, 
@@ -38,6 +40,9 @@ const newReservation = async (req, res) => {
                 totalDate: days,
                 totalPrice: totalPrice
         });
+
+        Payment.create({reservation_id: reservation._id, email: user.email, status: 0});
+        
         res.status(201).json({ reservation_id: reservation._id }); // create success
     }
     catch (err) {
@@ -63,14 +68,19 @@ const getReservation = async (req, res) => {
 }
 
 
+
+
 // cancel reservation = delete reservation
 const cancelReservation = async (req, res) => {
     try{
         const {id} = req.body;
 
         const result = await Reservation.getById(id); // check exists
+        const payment = await Payment.getByReservationId(id);
         if(result){
             await Reservation.deleteById(id); // delete by id
+            payment.status = 2;
+            await Payment.updatePayment(id, payment);
             res.status(200).json({result: "Success!"});
         } else{
             res.status(400).json({result: "Not found" });
@@ -117,6 +127,21 @@ const changeReservation = async (req, res) => {
     }
 }
 
+// get reservation 
+const getReservationByEmail = async (req, res) => {
+    try{
+        const email = req.query.email;
+        console.log("Ready: " + email);
+        const result = await Reservation.findAllByEmail(email); // check 
+        console.log(result);
+        if(result){
+            res.status(200).json(result);
+        } else{
+            res.status(400).json({result: "Not found" });
+        }
+    } catch(err){
+        res.status(400).json({result : "Error!" });
+    }
+}
 
-
-module.exports = {newReservation, getReservation, cancelReservation, changeReservation};
+module.exports = {newReservation, getReservation, cancelReservation, changeReservation, getReservationByEmail};

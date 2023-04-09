@@ -32,6 +32,13 @@ const searchHotel = async (req, res) => {
         endDate,
         req.query.max_person
     ); // get by id
+    if(req.query.sort != null){
+        if(req.query.sort == 'asc'){    
+            result.sort(function(a, b){return a['rating'] - b['rating']})
+        } else{
+            result.sort(function(a, b){return b['rating'] - a['rating']})
+        }
+    }
     res.status(200).json({result: result});
 }
 

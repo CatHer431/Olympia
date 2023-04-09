@@ -5,6 +5,7 @@ const authRoutes = require('./routes/authRoutes');
 const reservationRoutes = require('./routes/reservationRoutes');
 const roomRoutes = require('./routes/roomRoutes');
 const hotelRoutes = require('./routes/hotelRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
 const cors = require('cors');
 const app = express();
 
@@ -25,6 +26,7 @@ app.get('/', (req, res) => res.send('Hello world!'));
 app.use(authRoutes);
 app.use(reservationRoutes);
 app.use(hotelRoutes);
+app.use(paymentRoutes);
 
 const port = process.env.PORT || 3000;
 

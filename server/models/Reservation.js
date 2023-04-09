@@ -148,6 +148,10 @@ reservationSchema.statics.updateReservation = async (id, reservation) => {
     );
 }
 
+reservationSchema.statics.findAllByEmail = async (email) => {
+    return await Reservation.find({ "user.email": email });
+}
+
 const Reservation = mongoose.model('reservations', reservationSchema);
 
 module.exports = Reservation;

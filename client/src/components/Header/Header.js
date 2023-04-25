@@ -130,14 +130,14 @@ function Header() {
                         <div className={cx("menu__right")}>
                             <div className={cx("menu__left")}>
                                 {
-                                mainNav.map((item, index) => (
-                                    <div key={index} className={cx("menu__left-item")}>
-                                        <Link to={item?.path} className={cx("item-link", { "is-active": active === index })}>
-                                            {item?.title}
-                                        </Link>
-                                    </div>
-                                ))
-                            }
+                                    mainNav.map((item, index) => (
+                                        <div key={index} className={cx("menu__left-item")}>
+                                            <Link to={item?.path} className={cx("item-link", { "is-active": active === index })}>
+                                                {item?.title}
+                                            </Link>
+                                        </div>
+                                    ))
+                                }
                             </div>
                             <div className={cx("header-account")}>
                                 {

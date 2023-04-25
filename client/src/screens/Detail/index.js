@@ -93,7 +93,7 @@ function Detail() {
                                     checkIn={checkIn}
                                     checkOut={checkOut}
                                 />
-                                )) : <Empty />}
+                            )) : <Empty />}
                         </div>
                     </div>
                 </div>
@@ -102,12 +102,12 @@ function Detail() {
     );
 }
 function Empty() {
-  return (
-      <div className={cx("shop_empty")}>
-          <img src={SearchEmpty} alt="" />
-          <h2>There is no room you are looking for 🕵️</h2>
-      </div>
-  );
+    return (
+        <div className={cx("shop_empty")}>
+            <img src={SearchEmpty} alt="" />
+            <h2>There is no room you are looking for 🕵️</h2>
+        </div>
+    );
 }
 
 export default Detail;

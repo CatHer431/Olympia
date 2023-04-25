@@ -97,7 +97,7 @@ function Booking() {
             };
             postData(params);
         } else {
-        toast("You must SignIn to Booking!", null, TOAST_TYPE.ERROR);
+            toast("You must SignIn to Booking!", null, TOAST_TYPE.ERROR);
         }
     };
     return (

@@ -20,9 +20,9 @@ const cx = classNames.bind(classes);
 
 function ProductView({ product }) {
     const {
- _id, images, name, description, city, rating, rooms, nation, district
-} = product;
-console.log("check", product);
+        _id, images, name, description, city, rating, rooms, nation, district
+    } = product;
+    console.log("check", product);
     const [prevImg, setPrevImg] = React.useState(images[0]);
 
     const [qnt, setQnt] = React.useState(1);
@@ -132,15 +132,15 @@ console.log("check", product);
                     <div className={cx("overview")}>
                         <div
                             style={{
-                            padding: 12,
-                            fontSize: 13,
-                            color: "#D32F2F",
-                            fontWeight: "500",
-                            width: 85,
-                            borderBottomWidth: 2,
-                            borderBottomColor: "#D32F2F",
-                            borderBottomStyle: "solid"
-                        }}
+                                padding: 12,
+                                fontSize: 13,
+                                color: "#D32F2F",
+                                fontWeight: "500",
+                                width: 85,
+                                borderBottomWidth: 2,
+                                borderBottomColor: "#D32F2F",
+                                borderBottomStyle: "solid"
+                            }}
                         >
                             Overview
                         </div>

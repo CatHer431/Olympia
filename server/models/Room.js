@@ -15,13 +15,13 @@ const roomSchema = new mongoose.Schema({
     rating: {
         type: Number
     },
-    maxPerson:{
+    maxPerson: {
         type: Number
     },
     bedAmount: {
         type: Number
     },
-    discountPercent:{
+    discountPercent: {
         type: Number,
         default: 0
     },
@@ -49,11 +49,11 @@ roomSchema.statics.getById = async (id) => {
 roomSchema.statics.getByHotelIDAndBookingTime = async (hotel_id, startDate, endDate, maxPerson) => {
     const rooms = await Room.getByHotelID(hotel_id);
     result = []
-    for(var i = 0; i<rooms.length; i++){
-        if(maxPerson != null && rooms[i].maxPerson < maxPerson){
+    for (var i = 0; i < rooms.length; i++) {
+        if (maxPerson != null && rooms[i].maxPerson < maxPerson) {
             continue;
         }
-        if(await Reservation.checkValid(rooms[i]._id.toString(), startDate, endDate)){
+        if (await Reservation.checkValid(rooms[i]._id.toString(), startDate, endDate)) {
             result.push(rooms[i]);
         }
     }

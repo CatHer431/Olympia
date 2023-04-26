@@ -78,15 +78,14 @@ function HotelCard(props) {
                         <div className={cx("content-right")} style={{ textAlign: "end" }}>
                             <span style={{ textDecoration: "line-through", marginRight: 5 }}>
                                 {" "}
-                                {data.min_price.originPrice}
                                 $
+                                {data.min_price.originPrice}
                                 {" "}
                             </span>
                             <span style={{ fontWeight: "600" }}>
                                 {" "}
-
-                                {data.min_price.currentPrice}
                                 $
+                                {data.min_price.currentPrice}
                                 {" "}
 
                             </span>

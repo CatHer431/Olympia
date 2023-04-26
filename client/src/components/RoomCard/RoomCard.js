@@ -100,14 +100,14 @@ function RoomCard(props) {
                     <div className={cx("content-footer")}>
                         <div className={cx("cost")}>
                             <span style={{ fontWeight: "600" }}>
-                                {price}
                                 $
+                                {price}
                                 {" "}
                             </span>
                             <span style={{ textDecoration: "line-through", marginRight: 5 }}>
                                 {" "}
-                                {price + 100}
                                 $
+                                {price + 100}
                                 {" "}
                             </span>
                             <p style={{ fontSize: 12, marginBottom: 0 }}>for 1 night</p>

@@ -344,8 +344,8 @@ function Booking() {
                         <div className={cx("total")}>
                             <h5>Total price</h5>
                             <p>
-                                {state.data.price}
                                 $
+                                {state.data.price}
                             </p>
                         </div>
                     </div>

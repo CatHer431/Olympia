@@ -20,6 +20,7 @@ const SingUp = React.lazy(() => import("./screens/SingUp"));
 const NotFund = React.lazy(() => import("./screens/NotFound"));
 const SingIn = React.lazy(() => import("./screens/SingIn"));
 const Booking = React.lazy(() => import("./screens/Booking"));
+const MyReservation = React.lazy(() => import("./screens/MyReservation"));
 
 function App() {
     const { userDetail } = useAuthenticated();
@@ -50,6 +51,7 @@ function App() {
                     <Route path="/booking/:id" element={<Booking />} />
                     <Route path="/login" element={<SingIn />} />
                     <Route path="/register" element={<SingUp />} />
+                    <Route path="/my-reservation" element={<MyReservation />} />
                     <Route path="*" element={<NotFund />} />
                 </Routes>
             </Suspense>

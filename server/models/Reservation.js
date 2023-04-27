@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { isEmail } = require('validator');
+const Payment = require('./Payment.js');
 
 // reversation schema in mongodb
 const reservationSchema = new mongoose.Schema({
@@ -26,7 +27,7 @@ const reservationSchema = new mongoose.Schema({
             validate: [isEmail, "Please enter a valid email"]
         }
     },
-    hotel:{
+    hotel: {
         _id: {
             type: String
         },
@@ -44,11 +45,14 @@ const reservationSchema = new mongoose.Schema({
             required: [true, "Please enter your city name"],
             lowercase: true
         },
-        nation:{
+        nation: {
             type: String,
             required: [true, "Please enter your hotel name"],
             lowercase: true
-        }
+        },
+        images: [{
+            type: String
+        }]
     },
 
     room: {
@@ -64,7 +68,7 @@ const reservationSchema = new mongoose.Schema({
         price: {
             type: Number
         },
-        discountPercent:{
+        discountPercent: {
             type: Number
         },
         rating: {
@@ -77,7 +81,7 @@ const reservationSchema = new mongoose.Schema({
 
     bookingDate: {
         type: Date,
-        default: new Date(+new Date() + 7*24*60*60*1000),
+        default: new Date(+new Date() + 7 * 24 * 60 * 60 * 1000),
         required: [true, "Please enter an bookingDate"],
     },
     startDate: {
@@ -88,7 +92,7 @@ const reservationSchema = new mongoose.Schema({
         type: Date,
         required: [true, "Please enter an bookingDate"],
     },
-    totalDate:{
+    totalDate: {
         type: Number
     },
     totalPrice: {
@@ -121,15 +125,17 @@ reservationSchema.statics.deleteById = async (id) => {
 // check multi booking with same roomID
 reservationSchema.statics.checkValid = async (roomId, startDate, endDate) => {
     // check between [startDate,endDate]
-    const result = await Reservation.find({ $or: [
-        {startDate: {$gte: startDate, $lte: endDate}},
-        {endDate: {$gte: startDate, $lte: endDate}}
-    ]});
+    const result = await Reservation.find({
+        $or: [
+            { startDate: { $gte: startDate, $lte: endDate } },
+            { endDate: { $gte: startDate, $lte: endDate } }
+        ]
+    });
     // if(roomId === "64153f680c2abfe66ef599c7")
     //     console.log(result);
     // check room-id
-    for(var i=0; i<result.length; i++){
-        if(result[i].room._id == roomId){
+    for (var i = 0; i < result.length; i++) {
+        if (result[i].room._id == roomId) {
             return false;
         }
     }
@@ -138,11 +144,11 @@ reservationSchema.statics.checkValid = async (roomId, startDate, endDate) => {
 
 
 reservationSchema.statics.updateReservation = async (id, reservation) => {
-    await Reservation.findByIdAndUpdate({ _id: id }, 
+    await Reservation.findByIdAndUpdate({ _id: id },
         {
-            room: reservation.room, 
+            room: reservation.room,
             bookingDate: reservation.bookingDate,
-            startDate: reservation.startDate, 
+            startDate: reservation.startDate,
             endDate: reservation.endDate
         }
     );
@@ -151,6 +157,7 @@ reservationSchema.statics.updateReservation = async (id, reservation) => {
 reservationSchema.statics.findAllByEmail = async (email) => {
     return await Reservation.find({ "user.email": email });
 }
+
 
 const Reservation = mongoose.model('reservations', reservationSchema);
 

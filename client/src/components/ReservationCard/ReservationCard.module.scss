@@ -1,0 +1,44 @@
+.content {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: flex;
+
+            img {
+                height: 120px;
+                width: 120px;
+                border-radius: 20px;
+            }
+
+            &-card {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+
+            &-information {
+                margin-left: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                ul {
+                    list-style: none;
+                    display: flex;
+                    padding: 0px;
+                    margin: 0px;
+                }
+
+                li {
+                    padding: 0 20px 0 0;
+                }
+            }
+
+            button {
+                padding: 5px 20px;
+                margin-left: 200px;
+                border: none;
+                background-color: #ea4c89;
+                color: white;
+                border-radius: 30px;
+            }
+        }

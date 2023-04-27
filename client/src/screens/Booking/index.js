@@ -66,7 +66,6 @@ function Booking() {
     const myEmail = JSON.parse(localStorage.getItem("email"));
     const toast = useToast();
     const img = data.images?.[0];
-    console.log(state);
     React.useEffect(() => {
         window.scrollTo(0, 0);
     }, []);

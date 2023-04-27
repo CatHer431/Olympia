@@ -56,7 +56,6 @@ function Hotel() {
     // onclick outside
     const getData = async () => {
         const response = await request.get("hotels");
-        console.log(response);
         setData(response.data.result);
     };
     const handleLoading = () => {

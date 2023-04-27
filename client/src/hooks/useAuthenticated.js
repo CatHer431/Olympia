@@ -33,6 +33,7 @@ function useAuthenticated() {
         });
     };
     const singInEmailPassword = (data) => {
+        console.log("singInEmailPassword");
         auth.signInWithEmailAndPassword(data?.email, data?.password).then(() => {
             toast("Login Successfully", () => { navigate("/"); });
         }).catch((error) => toast(error?.message, null, TOAST_TYPE.ERROR));
@@ -50,6 +51,7 @@ function useAuthenticated() {
                 const {
                     displayName, email, uid, photoURL
                 } = currentUser;
+                console.log("displayName: ", displayName);
                 if (displayName) {
                     setUserDetail({
                         displayName, email, uid, photoURL

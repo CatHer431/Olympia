@@ -1,5 +1,5 @@
 const express = require('express');
-const { newReservation, getReservation, cancelReservation, changeReservation, getReservationByEmail} = require('../controllers/reservationController');
+const { newReservation, getReservation, cancelReservation, changeReservation, getReservationByEmail, getUserReservation } = require('../controllers/reservationController');
 
 const router = express.Router();
 
@@ -16,5 +16,7 @@ router.delete('/reservation', cancelReservation);
 router.put('/reservation', changeReservation);
 
 router.get('/my-reservation', getReservationByEmail);
+
+router.get('/paid-reservation', getUserReservation);
 
 module.exports = router;

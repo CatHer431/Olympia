@@ -149,12 +149,14 @@ function Header() {
                                                     {myEmail}
                                                 </div>
                                                 <ul className={cx("header__account-option")}>
+                                                    <li>
+                                                        <a href="/my-reservation">My Reservation</a>
+                                                    </li>
                                                     <li
                                                         onClick={handleLogOut}
                                                         className={cx("header__account-option-item")}
                                                     >
                                                         <i className={cx("bx bx-log-in-circle")} />
-
                                                         <span>Logout</span>
                                                     </li>
                                                 </ul>

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/function-component-definition */
 /* eslint-disable consistent-return */
@@ -18,6 +19,7 @@ import SearchEmpty from "assets/images/no_search.svg";
 import Search from "components/Search/Search";
 import HotelCard from "components/HotelCard/HotelCard";
 import Loading from "components/Loading";
+import Video from "assets/banner.mp4";
 import clasess from "./Shop.module.scss";
 
 const cx = classNames.bind(clasess);
@@ -128,22 +130,24 @@ function Hotel() {
     return (
         <Layout>
             <section className={cx("shop")}>
-                <div className={cx("shop-area")}>
-                    <div className={cx("shop-area__title")}>
-                        <h2>Hotels</h2>
-                        <ul>
-                            <li>
-                                Home
-                            </li>
-                            <li>
-                                <i className={cx("bx bx-happy-heart-eyes")} />
-                            </li>
-                            <li>
-                                Hotels
-                            </li>
-                        </ul>
-                    </div>
-
+                {/* <div className={cx("shop-area")}> */}
+                <div>
+                    <video className={cx("shop-area")} src={Video} autoPlay loop muted preload="auto">
+                        <div className={cx("shop-area__title")}>
+                            <h2>Hotels</h2>
+                            <ul>
+                                <li>
+                                    Home
+                                </li>
+                                <li>
+                                    <i className={cx("bx bx-happy-heart-eyes")} />
+                                </li>
+                                <li>
+                                    Hotels
+                                </li>
+                            </ul>
+                        </div>
+                    </video>
                 </div>
                 <div className={cx("shop-content")}>
                     <div className={cx("container")}>

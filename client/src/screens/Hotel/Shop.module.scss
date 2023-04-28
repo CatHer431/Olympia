@@ -2,11 +2,13 @@
 
     &-area {
         position: relative;
-        background-image: url("../../assets/images/banner-hotel.jpg");
-        background-position: center center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        height: 600px;
+        // background-image: url("../../assets/images/banner-hotel.jpg");
+        // background-position: center center;
+        // background-size: cover;
+        // background-repeat: no-repeat;
+        height: 100vh;
+        width: 100vw;
+        object-fit: cover;
         z-index: 1;
 
         &::before {

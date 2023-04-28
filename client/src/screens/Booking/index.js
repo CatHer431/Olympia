@@ -115,6 +115,8 @@ function Booking() {
     const diffDays = Math.round(Math.abs((checkOut - checkIn) / oneDay)); // Get the difference in days
 
     const discountPercent = state.data.discountPercent;
+    const totalPrice = (diffDays * (state.data.price - discountPercent / 100 * state.data.price)).toFixed(2);
+    console.log("totalPrice: ", totalPrice);
     const onFinish = () => {
         if (myEmail) {
             const params = {
@@ -173,7 +175,7 @@ function Booking() {
                 <div className={cx("container")} style={{ display: "flex" }}>
                     <div style={{ flex: 1 }}>
                         <h2 className={cx("title")}>{data.name}</h2>
-                        <div className={cx("row")} style={{ flexWrap: "nowrap" }}>
+                        <div className={cx("row")} style={{ flexWrap: "nowrap", marginBottom: "30px" }}>
                             <div className={cx("col-lg-8")}>
                                 {card1Visible && (
                                     <div className={cx("step__1")}>
@@ -377,7 +379,7 @@ function Booking() {
                             <div
                                 className={cx("detail_rooms col-lg-4")}
                                 style={{
-                                    marginLeft: 15, borderWidth: 1, borderColor: "#cccccc", borderRadius: 4, borderStyle: "solid", marginTop: 73, maxHeight: 590
+                                    marginLeft: 15, borderWidth: 1, borderColor: "#cccccc", borderRadius: 4, borderStyle: "solid", marginTop: 12, maxHeight: 590
                                 }}
                             >
                                 <div className={cx("content")}>
@@ -436,7 +438,7 @@ function Booking() {
                                     <h5>Total price</h5>
                                     <p>
                                         $
-                                        {diffDays * (state.data.price - discountPercent / 100 * state.data.price)}
+                                        {totalPrice}
                                     </p>
                                 </div>
                             </div>

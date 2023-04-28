@@ -1,7 +1,11 @@
+/* eslint-disable no-mixed-operators */
+/* eslint-disable prefer-destructuring */
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-template-curly-in-string */
 import Layout from "components/Layout";
+import Payment from "components/Payment/Payment";
 
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -61,11 +65,25 @@ const validatePhone = (rule, value, callback) => {
 };
 
 function Booking() {
+    const [card1Visible, setCard1Visible] = useState(true);
+    const [card2Visible, setCard2Visible] = useState(false);
+    const [card3Visible, setCard3Visible] = useState(false);
+    const [responseReservation, setResponseReservation] = useState();
     const { state } = useLocation();
     const [data, setData] = useState({});
     const myEmail = JSON.parse(localStorage.getItem("email"));
     const toast = useToast();
     const img = data.images?.[0];
+
+    const handleCard1Submit = () => {
+        setCard1Visible(false);
+        setCard2Visible(true);
+    };
+    const handleCard2Submit = () => {
+        setCard2Visible(false);
+        setCard3Visible(true);
+    };
+
     React.useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -79,13 +97,23 @@ function Booking() {
     }, []);
 
     const postData = async (params) => {
-        await request.post("reservation", params);
+        const response = await request.post("reservation", params);
+        setResponseReservation(response.data);
+        console.log("response: ", responseReservation);
+        // console.log("response data: ", responseReservation.data);
         toast(
             "Booking Success!",
             null,
             TOAST_TYPE.SUCCESS
         );
     };
+    const checkIn = new Date(state.checkIn);
+    const checkOut = new Date(state.checkOut);
+
+    const oneDay = 24 * 60 * 60 * 1000; // Number of milliseconds in one day
+    const diffDays = Math.round(Math.abs((checkOut - checkIn) / oneDay)); // Get the difference in days
+
+    const discountPercent = state.data.discountPercent;
     const onFinish = () => {
         if (myEmail) {
             const params = {
@@ -95,8 +123,18 @@ function Booking() {
                 end_date: state.checkOut
             };
             postData(params);
+            handleCard1Submit();
         } else {
             toast("You must SignIn to Booking!", null, TOAST_TYPE.ERROR);
+        }
+    };
+
+    const handlePayment = async (reservationId) => {
+        try {
+            const response = await request.post(`payment?reservation_id=${reservationId}`);
+            console.log("Reservation is paid successfully: ", response.data);
+        } catch (error) {
+            console.error("Failed to make a payment: ", error);
         }
     };
     return (
@@ -134,153 +172,200 @@ function Booking() {
                 <div className={cx("container")} style={{ display: "flex" }}>
                     <div className={cx("col-lg-8")}>
                         <h2 className={cx("title")}>{data.name}</h2>
-                        <div className={cx("step__1")}>
-                            <h4 className={cx("step")}>Step 1: Your details</h4>
-                            <div style={{
-                                paddingRight: 20, paddingLeft: 20, paddingTop: 16, paddingBottom: 24
-                            }}
-                            >
-                                <p style={{ fontSize: 12, color: "#4e4e4e" }}>Please tell us the name of the guest staying at the hotel as it appears on the ID that they’ll present at check-in. If the guest has more than one last name, please enter them all.</p>
-                                <Form
-                                    {...layout}
-                                    name="nest-messages"
-                                    onFinish={onFinish}
-                                    style={{
-                                        maxWidth: 450
-                                    }}
-                                    layout="vertical"
-                                    validateMessages={validateMessages}
+                        {card1Visible && (
+                            <div className={cx("step__1")}>
+                                <h4 className={cx("step")}>Step 1: Your details</h4>
+                                <div style={{
+                                    paddingRight: 20, paddingLeft: 20, paddingTop: 16, paddingBottom: 24
+                                }}
                                 >
-                                    <Form.Item
-                                        name="firstName"
-                                        label="First name"
-                                        style={{ fontWeight: "700" }}
-                                        rules={[
-                                            {
-                                                required: true
-                                            }
-                                        ]}
-                                    >
-                                        <Input />
-                                    </Form.Item>
-                                    <Form.Item
-                                        name="lastName"
-                                        label="Last Name"
-                                        style={{ fontWeight: "700" }}
-                                        rules={[
-                                            {
-                                                required: true
-                                            }
-                                        ]}
-                                    >
-                                        <Input />
-                                    </Form.Item>
-                                    <Form.Item
-                                        name="email"
-                                        label="Email address"
-                                        style={{ fontWeight: "700" }}
-                                    >
-                                        <Input value={myEmail} defaultValue={myEmail} disabled />
-                                    </Form.Item>
-                                    <Form.Item
-                                        name="phone"
-                                        label="Mobile number"
-                                        style={{ fontWeight: "700" }}
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message: "Please input your phone number!"
-                                            }, { validator: validatePhone }
-                                        ]}
-                                    >
-                                        <Input
-                                            addonBefore={prefixSelector}
-                                            style={{
-                                                width: "100%"
-                                            }}
-                                        />
-                                    </Form.Item>
-                                    <Form.Item>
-                                        <Button type="primary" size="large" htmlType="submit" style={{ marginTop: 20, fontSize: 18, fontWeight: 700 }}>
-                                            Book
-                                        </Button>
-                                    </Form.Item>
-                                </Form>
-                            </div>
-
-                        </div>
-                        <div className={cx("step__2")}>
-                            <h4 className={cx("step")}>Step 2: Room details</h4>
-                            <div className={cx("title")}>
-                                <h4 className={cx("title_content")}>Property amenities</h4>
-                                <div style={{ display: "flex", marginTop: 4, marginBottom: 16 }}>
-                                    <div className={cx("product-commits__content")}>
-                                        <i className="bx bx-swim" />
-                                        <span>Pool</span>
-                                    </div>
-                                    <div className={cx("product-commits__content")}>
-                                        <i className={cx("bx bx-wifi")} />
-                                        <span>Free WiFi</span>
-                                    </div>
-                                    <div className={cx("product-commits__content")}>
-                                        <i className="bx bxs-parking" />
-                                        <span>Parking available</span>
-                                    </div>
-                                    <div className={cx("product-commits__content")}>
-                                        <i className="bx bx-spa" />
-                                        <span>Spa</span>
-                                    </div>
-                                    <div className={cx("product-commits__content")}>
-                                        <i className="bx bx-bath" />
-                                        <span>Bathtub</span>
-                                    </div>
-                                    <div className={cx("product-commits__content")}>
-                                        <i className="bx bx-restaurant" />
-                                        <span>Restaurant</span>
-                                    </div>
-                                </div>
-                                <h3 className={cx("title_content")}>{state.data.name}</h3>
-                                <div className={cx("des")} style={{ display: "flex" }}>
-                                    <div
-                                        className={cx("product-commits__content")}
-                                        style={{ padding: 0 }}
-                                    >
-                                        <i
-                                            className={cx("bx bx-check icon-check")}
-                                            style={{ color: "#218242", fontSize: 23, marginRight: 2 }}
-                                        />
-                                        <span style={{
-                                            color: "#4e4e4e", fontSize: 14, fontWeight: "bold", marginRight: 8
+                                    <p style={{ fontSize: 12, color: "#4e4e4e" }}>Please tell us the name of the guest staying at the hotel as it appears on the ID that they’ll present at check-in. If the guest has more than one last name, please enter them all.</p>
+                                    <Form
+                                        {...layout}
+                                        name="nest-messages"
+                                        onFinish={onFinish}
+                                        style={{
+                                            maxWidth: 450
                                         }}
+                                        layout="vertical"
+                                        validateMessages={validateMessages}
+                                    >
+                                        <Form.Item
+                                            name="firstName"
+                                            label="First name"
+                                            style={{ fontWeight: "700" }}
+                                            rules={[
+                                                {
+                                                    required: true
+                                                }
+                                            ]}
                                         >
-                                            Included in your room:
-                                        </span>
-                                    </div>
-                                    <div
-                                        className={cx("product-commits__content")}
-                                        style={{ paddingRight: 12, paddingLeft: 20 }}
-                                    >
-                                        <i
-                                            className={cx("bx bx-wifi")}
-                                            style={{ color: "#218242" }}
-                                        />
-                                        <span style={{ color: "#218242", fontSize: 13 }}>
-                                            Free Wifi
-                                        </span>
-                                    </div>
-                                    <div
-                                        className={cx("product-commits__content")}
-                                        style={{ padding: 0 }}
-                                    >
-                                        <i className="bx bxs-coffee" style={{ color: "#218242" }} />
-                                        <span style={{ color: "#218242", fontSize: 13 }}>
-                                            Breakfast available (pay at the property)
-                                        </span>
-                                    </div>
+                                            <Input />
+                                        </Form.Item>
+                                        <Form.Item
+                                            name="lastName"
+                                            label="Last Name"
+                                            style={{ fontWeight: "700" }}
+                                            rules={[
+                                                {
+                                                    required: true
+                                                }
+                                            ]}
+                                        >
+                                            <Input />
+                                        </Form.Item>
+                                        <Form.Item
+                                            name="email"
+                                            label="Email address"
+                                            style={{ fontWeight: "700" }}
+                                        >
+                                            <Input value={myEmail} defaultValue={myEmail} disabled />
+                                        </Form.Item>
+                                        <Form.Item
+                                            name="phone"
+                                            label="Mobile number"
+                                            style={{ fontWeight: "700" }}
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message: "Please input your phone number!"
+                                                }, { validator: validatePhone }
+                                            ]}
+                                        >
+                                            <Input
+                                                addonBefore={prefixSelector}
+                                                style={{
+                                                    width: "100%"
+                                                }}
+                                            />
+                                        </Form.Item>
+                                        <Form.Item>
+                                            <button
+                                                type="submit"
+                                                size="large"
+                                                htmlType="submit"
+                                                style={{
+                                                    backgroundColor: "#198754",
+                                                    border: "1px solid transparent",
+                                                    padding: "0.375rem 0.75rem",
+                                                    fontSize: "1rem",
+                                                    borderRadius: "0.25rem",
+                                                    color: "white",
+                                                    borderColor: "#198754"
+                                                }}
+                                            >
+                                                Book
+                                            </button>
+                                        </Form.Item>
+                                    </Form>
                                 </div>
 
                             </div>
-                        </div>
+                        )}
+                        {card2Visible && (
+                            <div className={cx("step__2")}>
+                                <h4 className={cx("step")}>Step 2: Room details</h4>
+                                <div className={cx("title")}>
+                                    <h4 className={cx("title_content")}>Property amenities</h4>
+                                    <div style={{ display: "flex", marginTop: 4, marginBottom: 16 }}>
+                                        <div className={cx("product-commits__content")}>
+                                            <i className="bx bx-swim" />
+                                            <span>Pool</span>
+                                        </div>
+                                        <div className={cx("product-commits__content")}>
+                                            <i className={cx("bx bx-wifi")} />
+                                            <span>Free WiFi</span>
+                                        </div>
+                                        <div className={cx("product-commits__content")}>
+                                            <i className="bx bxs-parking" />
+                                            <span>Parking available</span>
+                                        </div>
+                                        <div className={cx("product-commits__content")}>
+                                            <i className="bx bx-spa" />
+                                            <span>Spa</span>
+                                        </div>
+                                        <div className={cx("product-commits__content")}>
+                                            <i className="bx bx-bath" />
+                                            <span>Bathtub</span>
+                                        </div>
+                                        <div className={cx("product-commits__content")}>
+                                            <i className="bx bx-restaurant" />
+                                            <span>Restaurant</span>
+                                        </div>
+                                    </div>
+                                    <h3 className={cx("title_content")}>{state.data.name}</h3>
+                                    <div className={cx("des")} style={{ display: "flex" }}>
+                                        <div
+                                            className={cx("product-commits__content")}
+                                            style={{ padding: 0 }}
+                                        >
+                                            <i
+                                                className={cx("bx bx-check icon-check")}
+                                                style={{ color: "#218242", fontSize: 23, marginRight: 2 }}
+                                            />
+                                            <span style={{
+                                                color: "#4e4e4e", fontSize: 14, fontWeight: "bold", marginRight: 8
+                                            }}
+                                            >
+                                                Included in your room:
+                                            </span>
+                                        </div>
+                                        <div
+                                            className={cx("product-commits__content")}
+                                            style={{ paddingRight: 12, paddingLeft: 20 }}
+                                        >
+                                            <i
+                                                className={cx("bx bx-wifi")}
+                                                style={{ color: "#218242" }}
+                                            />
+                                            <span style={{ color: "#218242", fontSize: 13 }}>
+                                                Free Wifi
+                                            </span>
+                                        </div>
+                                        <div
+                                            className={cx("product-commits__content")}
+                                            style={{ padding: 0 }}
+                                        >
+                                            <i className="bx bxs-coffee" style={{ color: "#218242" }} />
+                                            <span style={{ color: "#218242", fontSize: 13 }}>
+                                                Breakfast available (pay at the property)
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button
+                                            type="submit"
+                                            size="large"
+                                            htmlType="submit"
+                                            style={{
+                                                marginTop: "30px",
+                                                backgroundColor: "#198754",
+                                                border: "1px solid transparent",
+                                                padding: "0.375rem 0.75rem",
+                                                fontSize: "1rem",
+                                                borderRadius: "0.25rem",
+                                                color: "white",
+                                                borderColor: "#198754"
+                                            }}
+                                            onClick={handleCard2Submit}
+                                        >
+                                            Next
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        )}
+                        {card3Visible && (
+                            <div className={cx("step__2")}>
+                                <h4 className={cx("step")}>Step 3: Your Payment</h4>
+                                {responseReservation && (
+                                    <div>
+                                        <Payment key={responseReservation._id} data={responseReservation} onPayment={handlePayment} />
+                                    </div>
+                                )}
+                            </div>
+                        )}
                     </div>
                     <div
                         className={cx("detail_rooms col-lg-4")}
@@ -344,7 +429,7 @@ function Booking() {
                             <h5>Total price</h5>
                             <p>
                                 $
-                                {state.data.price}
+                                {diffDays * (state.data.price - discountPercent / 100 * state.data.price)}
                             </p>
                         </div>
                     </div>

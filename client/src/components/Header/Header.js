@@ -12,7 +12,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TOAST_TYPE } from "constants/global";
 import { useAuthenticated, useToast } from "hooks";
 
-import logo from "assets/images/logo-hotel.jpg";
+import logo from "assets/images/logo.png";
 
 import classNames from "classnames/bind";
 
@@ -24,10 +24,10 @@ import classes from "./Header.module.scss";
 const cx = classNames.bind(classes);
 
 const mainNav = [
-    {
-        title: "English",
-        path: "/"
-    },
+    // {
+    //     title: "English",
+    //     path: "/"
+    // },
     {
         title: "List your property",
         path: "/"
@@ -82,7 +82,7 @@ function Header() {
     // scroll
     React.useEffect(() => {
         window.addEventListener(("scroll"), () => {
-            if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+            if (document.body.scrollTop > window.innerHeight || document.documentElement.scrollTop > window.innerHeight) {
                 setIsShow(true);
             } else {
                 setIsShow(false);
@@ -116,16 +116,18 @@ function Header() {
                         <div className={cx("header-mennu-toggle")} onClick={() => setIsActive(true)}>
                             <i className="bx bx-menu" />
                         </div>
-                        <div className={cx("header-logo")}>
-                            <Link to="/">
-                                <img src={logo} alt="logo" />
-                            </Link>
-                        </div>
-                        <div className={cx("menu__left-item")}>
-                            <Link to="/" className={cx("item-link-left")}>
-                                <i className="fa-regular fa-earth-americas" />
-                                Olympia
-                            </Link>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                            <div className={cx("header-logo")}>
+                                <Link to="/">
+                                    <img src={logo} alt="logo" />
+                                </Link>
+                            </div>
+                            <div className={cx("menu__left-item")}>
+                                <Link to="/" className={cx("item-link-left")}>
+                                    <i className="fa-regular fa-earth-americas" />
+                                    Olympia
+                                </Link>
+                            </div>
                         </div>
                         <div className={cx("menu__right")}>
                             <div className={cx("menu__left")}>
@@ -145,9 +147,9 @@ function Header() {
                                         ? (
                                             <div className={cx("sing-in")}>
                                                 <img src={avatar} alt="" />
-                                                <div>
+                                                {/* <div>
                                                     {myEmail}
-                                                </div>
+                                                </div> */}
                                                 <ul className={cx("header__account-option")}>
                                                     <li>
                                                         <a href="/my-reservation">My Reservation</a>

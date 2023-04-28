@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 /* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/function-component-definition */
@@ -148,6 +149,7 @@ function Hotel() {
                             </ul>
                         </div>
                     </video>
+                    <div className={cx("dark-overlay")}></div>
                 </div>
                 <div className={cx("shop-content")}>
                     <div className={cx("container")}>

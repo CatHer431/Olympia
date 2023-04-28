@@ -7,11 +7,14 @@ import Layout from "components/Layout";
 // import RoomCard from "components/RoomCard/RoomCard";
 import ReservationCard from "components/ReservationCard/ReservationCard";
 // import axios from "axios";
+import { useToast } from "hooks";
+import { TOAST_TYPE } from "constants/global";
 import classes from "./MyReservation.module.scss";
 
 const cx = classNames.bind(classes);
 
 function MyReservation() {
+    const toast = useToast();
     const [reservationData, setReservationData] = useState([]);
     const email = localStorage.getItem("email") ? localStorage.getItem("email").replace(/"/g, "") : "";
 
@@ -48,6 +51,7 @@ function MyReservation() {
             );
             // Update the state with the new reservationData
             setReservationData(updatedReservationData);
+            toast("Your reservation has been cancelled", null, TOAST_TYPE.SUCCESS);
         } catch (error) {
             console.error("Failed to cancel reservation: ", error);
         }

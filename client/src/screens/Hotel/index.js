@@ -133,7 +133,7 @@ function Hotel() {
             <section className={cx("shop")}>
                 {/* <div className={cx("shop-area")}> */}
                 <div>
-                    <video className={cx("shop-area")} src={Video} autoPlay loop muted preload="auto">
+                    <div className={cx("shop-area")}>
                         <div className={cx("shop-area__title")}>
                             <h2>Hotels</h2>
                             <ul>
@@ -148,8 +148,9 @@ function Hotel() {
                                 </li>
                             </ul>
                         </div>
-                    </video>
-                    <div className={cx("dark-overlay")}></div>
+                        <div className={cx("dark-overlay")}></div>
+                        <video src={Video} autoPlay loop muted preload="auto" />
+                    </div>
                 </div>
                 <div className={cx("shop-content")}>
                     <div className={cx("container")}>

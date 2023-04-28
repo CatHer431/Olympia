@@ -103,6 +103,12 @@
     border-radius: 4px;
     margin-bottom: 20px;
 }
+.step__3{
+    margin-top: -110px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
 .step__1{
     margin-top: 12px;
     border: 1px solid #cccccc;
@@ -124,6 +130,7 @@
 }
 .title{
     padding:12px 20px;
+    margin-right: auto;
 }
 .title_content{
     font-size: 16px;
@@ -227,6 +234,8 @@ padding: 12px;
 .detail_rooms{
     border: 1px solid #cccccc;
     border-radius:4px;
+    margin-top: 12px;
+    margin-bottom: 20px
 }
 .total{
     padding:16px;

@@ -6,6 +6,7 @@
 /* eslint-disable no-template-curly-in-string */
 import Layout from "components/Layout";
 import Payment from "components/Payment/Payment";
+import Card from "components/Payment/Card";
 
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -170,267 +171,275 @@ function Booking() {
 
                 </div>
                 <div className={cx("container")} style={{ display: "flex" }}>
-                    <div className={cx("col-lg-8")}>
+                    <div style={{ flex: 1 }}>
                         <h2 className={cx("title")}>{data.name}</h2>
-                        {card1Visible && (
-                            <div className={cx("step__1")}>
-                                <h4 className={cx("step")}>Step 1: Your details</h4>
-                                <div style={{
-                                    paddingRight: 20, paddingLeft: 20, paddingTop: 16, paddingBottom: 24
-                                }}
-                                >
-                                    <p style={{ fontSize: 12, color: "#4e4e4e" }}>Please tell us the name of the guest staying at the hotel as it appears on the ID that they’ll present at check-in. If the guest has more than one last name, please enter them all.</p>
-                                    <Form
-                                        {...layout}
-                                        name="nest-messages"
-                                        onFinish={onFinish}
-                                        style={{
-                                            maxWidth: 450
+                        <div className={cx("row")} style={{ flexWrap: "nowrap" }}>
+                            <div className={cx("col-lg-8")}>
+                                {card1Visible && (
+                                    <div className={cx("step__1")}>
+                                        <h4 className={cx("step")}>Step 1: Your details</h4>
+                                        <div style={{
+                                            paddingRight: 20, paddingLeft: 20, paddingTop: 16, paddingBottom: 24
                                         }}
-                                        layout="vertical"
-                                        validateMessages={validateMessages}
-                                    >
-                                        <Form.Item
-                                            name="firstName"
-                                            label="First name"
-                                            style={{ fontWeight: "700" }}
-                                            rules={[
-                                                {
-                                                    required: true
-                                                }
-                                            ]}
                                         >
-                                            <Input />
-                                        </Form.Item>
-                                        <Form.Item
-                                            name="lastName"
-                                            label="Last Name"
-                                            style={{ fontWeight: "700" }}
-                                            rules={[
-                                                {
-                                                    required: true
-                                                }
-                                            ]}
-                                        >
-                                            <Input />
-                                        </Form.Item>
-                                        <Form.Item
-                                            name="email"
-                                            label="Email address"
-                                            style={{ fontWeight: "700" }}
-                                        >
-                                            <Input value={myEmail} defaultValue={myEmail} disabled />
-                                        </Form.Item>
-                                        <Form.Item
-                                            name="phone"
-                                            label="Mobile number"
-                                            style={{ fontWeight: "700" }}
-                                            rules={[
-                                                {
-                                                    required: true,
-                                                    message: "Please input your phone number!"
-                                                }, { validator: validatePhone }
-                                            ]}
-                                        >
-                                            <Input
-                                                addonBefore={prefixSelector}
+                                            <p style={{ fontSize: 12, color: "#4e4e4e" }}>Please tell us the name of the guest staying at the hotel as it appears on the ID that they’ll present at check-in. If the guest has more than one last name, please enter them all.</p>
+                                            <Form
+                                                {...layout}
+                                                name="nest-messages"
+                                                onFinish={onFinish}
                                                 style={{
-                                                    width: "100%"
+                                                    maxWidth: 450
                                                 }}
-                                            />
-                                        </Form.Item>
-                                        <Form.Item>
-                                            <button
-                                                type="submit"
-                                                size="large"
-                                                htmlType="submit"
-                                                style={{
-                                                    backgroundColor: "#198754",
-                                                    border: "1px solid transparent",
-                                                    padding: "0.375rem 0.75rem",
-                                                    fontSize: "1rem",
-                                                    borderRadius: "0.25rem",
-                                                    color: "white",
-                                                    borderColor: "#198754"
-                                                }}
+                                                layout="vertical"
+                                                validateMessages={validateMessages}
                                             >
-                                                Book
-                                            </button>
-                                        </Form.Item>
-                                    </Form>
-                                </div>
+                                                <Form.Item
+                                                    name="firstName"
+                                                    label="First name"
+                                                    style={{ fontWeight: "700" }}
+                                                    rules={[
+                                                        {
+                                                            required: true
+                                                        }
+                                                    ]}
+                                                >
+                                                    <Input />
+                                                </Form.Item>
+                                                <Form.Item
+                                                    name="lastName"
+                                                    label="Last Name"
+                                                    style={{ fontWeight: "700" }}
+                                                    rules={[
+                                                        {
+                                                            required: true
+                                                        }
+                                                    ]}
+                                                >
+                                                    <Input />
+                                                </Form.Item>
+                                                <Form.Item
+                                                    name="email"
+                                                    label="Email address"
+                                                    style={{ fontWeight: "700" }}
+                                                >
+                                                    <Input value={myEmail} defaultValue={myEmail} disabled />
+                                                </Form.Item>
+                                                <Form.Item
+                                                    name="phone"
+                                                    label="Mobile number"
+                                                    style={{ fontWeight: "700" }}
+                                                    rules={[
+                                                        {
+                                                            required: true,
+                                                            message: "Please input your phone number!"
+                                                        }, { validator: validatePhone }
+                                                    ]}
+                                                >
+                                                    <Input
+                                                        addonBefore={prefixSelector}
+                                                        style={{
+                                                            width: "100%"
+                                                        }}
+                                                    />
+                                                </Form.Item>
+                                                <Form.Item>
+                                                    <button
+                                                        type="submit"
+                                                        size="large"
+                                                        htmlType="submit"
+                                                        style={{
+                                                            backgroundColor: "#198754",
+                                                            border: "1px solid transparent",
+                                                            padding: "0.375rem 0.75rem",
+                                                            fontSize: "1rem",
+                                                            borderRadius: "0.25rem",
+                                                            color: "white",
+                                                            borderColor: "#198754"
+                                                        }}
+                                                    >
+                                                        Book
+                                                    </button>
+                                                </Form.Item>
+                                            </Form>
+                                        </div>
 
-                            </div>
-                        )}
-                        {card2Visible && (
-                            <div className={cx("step__2")}>
-                                <h4 className={cx("step")}>Step 2: Room details</h4>
-                                <div className={cx("title")}>
-                                    <h4 className={cx("title_content")}>Property amenities</h4>
-                                    <div style={{ display: "flex", marginTop: 4, marginBottom: 16 }}>
-                                        <div className={cx("product-commits__content")}>
-                                            <i className="bx bx-swim" />
-                                            <span>Pool</span>
-                                        </div>
-                                        <div className={cx("product-commits__content")}>
-                                            <i className={cx("bx bx-wifi")} />
-                                            <span>Free WiFi</span>
-                                        </div>
-                                        <div className={cx("product-commits__content")}>
-                                            <i className="bx bxs-parking" />
-                                            <span>Parking available</span>
-                                        </div>
-                                        <div className={cx("product-commits__content")}>
-                                            <i className="bx bx-spa" />
-                                            <span>Spa</span>
-                                        </div>
-                                        <div className={cx("product-commits__content")}>
-                                            <i className="bx bx-bath" />
-                                            <span>Bathtub</span>
-                                        </div>
-                                        <div className={cx("product-commits__content")}>
-                                            <i className="bx bx-restaurant" />
-                                            <span>Restaurant</span>
-                                        </div>
                                     </div>
-                                    <h3 className={cx("title_content")}>{state.data.name}</h3>
-                                    <div className={cx("des")} style={{ display: "flex" }}>
-                                        <div
-                                            className={cx("product-commits__content")}
-                                            style={{ padding: 0 }}
-                                        >
-                                            <i
-                                                className={cx("bx bx-check icon-check")}
-                                                style={{ color: "#218242", fontSize: 23, marginRight: 2 }}
-                                            />
-                                            <span style={{
-                                                color: "#4e4e4e", fontSize: 14, fontWeight: "bold", marginRight: 8
-                                            }}
-                                            >
-                                                Included in your room:
-                                            </span>
-                                        </div>
-                                        <div
-                                            className={cx("product-commits__content")}
-                                            style={{ paddingRight: 12, paddingLeft: 20 }}
-                                        >
-                                            <i
-                                                className={cx("bx bx-wifi")}
-                                                style={{ color: "#218242" }}
-                                            />
-                                            <span style={{ color: "#218242", fontSize: 13 }}>
-                                                Free Wifi
-                                            </span>
-                                        </div>
-                                        <div
-                                            className={cx("product-commits__content")}
-                                            style={{ padding: 0 }}
-                                        >
-                                            <i className="bx bxs-coffee" style={{ color: "#218242" }} />
-                                            <span style={{ color: "#218242", fontSize: 13 }}>
-                                                Breakfast available (pay at the property)
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <button
-                                            type="submit"
-                                            size="large"
-                                            htmlType="submit"
-                                            style={{
-                                                marginTop: "30px",
-                                                backgroundColor: "#198754",
-                                                border: "1px solid transparent",
-                                                padding: "0.375rem 0.75rem",
-                                                fontSize: "1rem",
-                                                borderRadius: "0.25rem",
-                                                color: "white",
-                                                borderColor: "#198754"
-                                            }}
-                                            onClick={handleCard2Submit}
-                                        >
-                                            Next
-                                        </button>
-                                    </div>
+                                )}
+                                {card2Visible && (
+                                    <div className={cx("step__2")}>
+                                        <h4 className={cx("step")}>Step 2: Room details</h4>
+                                        <div className={cx("title")}>
+                                            <h4 className={cx("title_content")}>Property amenities</h4>
+                                            <div style={{ display: "flex", marginTop: 4, marginBottom: 16 }}>
+                                                <div className={cx("product-commits__content")}>
+                                                    <i className="bx bx-swim" />
+                                                    <span>Pool</span>
+                                                </div>
+                                                <div className={cx("product-commits__content")}>
+                                                    <i className={cx("bx bx-wifi")} />
+                                                    <span>Free WiFi</span>
+                                                </div>
+                                                <div className={cx("product-commits__content")}>
+                                                    <i className="bx bxs-parking" />
+                                                    <span>Parking available</span>
+                                                </div>
+                                                <div className={cx("product-commits__content")}>
+                                                    <i className="bx bx-spa" />
+                                                    <span>Spa</span>
+                                                </div>
+                                                <div className={cx("product-commits__content")}>
+                                                    <i className="bx bx-bath" />
+                                                    <span>Bathtub</span>
+                                                </div>
+                                                <div className={cx("product-commits__content")}>
+                                                    <i className="bx bx-restaurant" />
+                                                    <span>Restaurant</span>
+                                                </div>
+                                            </div>
+                                            <h3 className={cx("title_content")}>{state.data.name}</h3>
+                                            <div className={cx("des")} style={{ display: "flex" }}>
+                                                <div
+                                                    className={cx("product-commits__content")}
+                                                    style={{ padding: 0 }}
+                                                >
+                                                    <i
+                                                        className={cx("bx bx-check icon-check")}
+                                                        style={{ color: "#218242", fontSize: 23, marginRight: 2 }}
+                                                    />
+                                                    <span style={{
+                                                        color: "#4e4e4e", fontSize: 14, fontWeight: "bold", marginRight: 8
+                                                    }}
+                                                    >
+                                                        Included in your room:
+                                                    </span>
+                                                </div>
+                                                <div
+                                                    className={cx("product-commits__content")}
+                                                    style={{ paddingRight: 12, paddingLeft: 20 }}
+                                                >
+                                                    <i
+                                                        className={cx("bx bx-wifi")}
+                                                        style={{ color: "#218242" }}
+                                                    />
+                                                    <span style={{ color: "#218242", fontSize: 13 }}>
+                                                        Free Wifi
+                                                    </span>
+                                                </div>
+                                                <div
+                                                    className={cx("product-commits__content")}
+                                                    style={{ padding: 0 }}
+                                                >
+                                                    <i className="bx bxs-coffee" style={{ color: "#218242" }} />
+                                                    <span style={{ color: "#218242", fontSize: 13 }}>
+                                                        Breakfast available (pay at the property)
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <button
+                                                    type="submit"
+                                                    size="large"
+                                                    style={{
+                                                        marginTop: "30px",
+                                                        backgroundColor: "#198754",
+                                                        border: "1px solid transparent",
+                                                        padding: "0.375rem 0.75rem",
+                                                        fontSize: "1rem",
+                                                        borderRadius: "0.25rem",
+                                                        color: "white",
+                                                        borderColor: "#198754"
+                                                    }}
+                                                    onClick={handleCard2Submit}
+                                                >
+                                                    Next
+                                                </button>
+                                            </div>
 
-                                </div>
-                            </div>
-                        )}
-                        {card3Visible && (
-                            <div className={cx("step__2")}>
-                                <h4 className={cx("step")}>Step 3: Your Payment</h4>
-                                {responseReservation && (
-                                    <div>
-                                        <Payment key={responseReservation._id} data={responseReservation} onPayment={handlePayment} />
+                                        </div>
+                                    </div>
+                                )}
+                                {card3Visible && (
+                                    <div style={{ width: "500px" }}>
+                                        <Card />
+                                        <div className={cx("step__3")}>
+                                            <div style={{ marginTop: "130px" }}>
+                                                <h4 className={cx("step")}>Step 3: Your Payment</h4>
+                                                {responseReservation && (
+                                                    <div>
+                                                        <Payment key={responseReservation._id} data={responseReservation} onPayment={handlePayment} />
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
                                     </div>
                                 )}
                             </div>
-                        )}
-                    </div>
-                    <div
-                        className={cx("detail_rooms col-lg-4")}
-                        style={{
-                            marginLeft: 15, borderWidth: 1, borderColor: "#cccccc", borderRadius: 4, borderStyle: "solid", marginTop: 73, maxHeight: 590
-                        }}
-                    >
-                        <div className={cx("content")}>
-                            <div className={cx("content__main")}>
-                                <img className={cx("content__main-img")} src={img} alt="" />
-                                <div className={cx("content__main-info")}>
-                                    <span>Aparthotel</span>
-                                    {data.name}
-                                </div>
-                                <div className={cx("content__main-rating")}>
-                                    <span>
-                                        {data.rating}
-                                        .0
-                                    </span>
-                                    {" "}
-                                    Fabulous
-                                </div>
-                                <div className={cx("content__main-top")}>
-                                    <img src={iconMedal} alt="" style={{ width: 15, height: 22, marginRight: 8 }} />
-                                    Location:
-                                    {" "}
-                                    <span>
-                                        {data.rating}
-                                        .0
-                                        /10
-                                    </span>
-                                </div>
-                                <div className={cx("booking__detail")}>
-                                    <div className={cx("check")}>
-                                        Check-in
-                                        {" "}
-                                        <span>
+                            <div
+                                className={cx("detail_rooms col-lg-4")}
+                                style={{
+                                    marginLeft: 15, borderWidth: 1, borderColor: "#cccccc", borderRadius: 4, borderStyle: "solid", marginTop: 73, maxHeight: 590
+                                }}
+                            >
+                                <div className={cx("content")}>
+                                    <div className={cx("content__main")}>
+                                        <img className={cx("content__main-img")} src={img} alt="" />
+                                        <div className={cx("content__main-info")}>
+                                            <span>Aparthotel</span>
+                                            {data.name}
+                                        </div>
+                                        <div className={cx("content__main-rating")}>
+                                            <span>
+                                                {data.rating}
+                                                .0
+                                            </span>
                                             {" "}
-                                            <span className={cx("date")}>{state.checkIn}</span>
+                                            Fabulous
+                                        </div>
+                                        <div className={cx("content__main-top")}>
+                                            <img src={iconMedal} alt="" style={{ width: 15, height: 22, marginRight: 8 }} />
+                                            Location:
                                             {" "}
-                                            (2:00 PM)
+                                            <span>
+                                                {data.rating}
+                                                .0
+                                                /10
+                                            </span>
+                                        </div>
+                                        <div className={cx("booking__detail")}>
+                                            <div className={cx("check")}>
+                                                Check-in
+                                                {" "}
+                                                <span>
+                                                    {" "}
+                                                    <span className={cx("date")}>{state.checkIn}</span>
+                                                    {" "}
+                                                    (2:00 PM)
 
-                                        </span>
+                                                </span>
+
+                                            </div>
+                                            <div className={cx("check")}>
+                                                Check-out
+                                                {" "}
+                                                <span>
+                                                    <span className={cx("date")}>{state.checkOut}</span>
+                                                    {" "}
+                                                    (12:00 AM)
+                                                </span>
+
+                                            </div>
+                                        </div>
 
                                     </div>
-                                    <div className={cx("check")}>
-                                        Check-out
-                                        {" "}
-                                        <span>
-                                            <span className={cx("date")}>{state.checkOut}</span>
-                                            {" "}
-                                            (12:00 AM)
-                                        </span>
-
-                                    </div>
                                 </div>
-
+                                <div className={cx("total")}>
+                                    <h5>Total price</h5>
+                                    <p>
+                                        $
+                                        {diffDays * (state.data.price - discountPercent / 100 * state.data.price)}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div className={cx("total")}>
-                            <h5>Total price</h5>
-                            <p>
-                                $
-                                {diffDays * (state.data.price - discountPercent / 100 * state.data.price)}
-                            </p>
                         </div>
                     </div>
                 </div>

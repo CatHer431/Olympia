@@ -63,7 +63,7 @@ function Search(props) {
                 <Form
                     name="basic"
                     labelCol={{
-                        span: 8
+                        span: 20
                     }}
                     wrapperCol={{
                         span: 16
@@ -101,17 +101,19 @@ function Search(props) {
                         <RangePicker />
                     </Form.Item>
                     <Form.Item
-                        label="Travellers"
-                        style={{ width: "9%" }}
+                        label="Travelers"
+                        // style={{ width: "100px" }}
+                        // style={{ backgroundColor: "black" }}
                         name="travellers"
                     >
                         <InputNumber
+                            style={{ width: "115px" }}
                             min={1}
                             max={100}
                             defaultValue={1}
                             onChange={onChange}
-                            formatter={(value) => `${value} travellers`}
-                            parser={(value) => value.replace("travellers", "")}
+                            formatter={(value) => `${value} travelers`}
+                            parser={(value) => value.replace("travelers", "")}
                         />
                     </Form.Item>
                     <Form.Item
@@ -119,7 +121,7 @@ function Search(props) {
                             offset: 8,
                             span: 16
                         }}
-                        style={{ width: "20%" }}
+                        // style={{ width: "20%", backgroundColor: "pink" }}
                         label=" "
                     >
                         <Button type="primary" htmlType="submit">

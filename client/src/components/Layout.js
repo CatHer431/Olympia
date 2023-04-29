@@ -4,10 +4,13 @@ import Footer from "./Footer";
 import { Header } from "./Header";
 
 function Layout(props) {
-    const { children } = props;
+    console.log("Layout props: ", props);
+    const { scrollHeight, children } = props;
+    console.log("Layout scrollHeight: ", scrollHeight);
+    console.log("is scrollHeight: ", scrollHeight == null);
     return (
         <>
-            <Header />
+            <Header scrollHeight={scrollHeight} />
 
             {children}
 

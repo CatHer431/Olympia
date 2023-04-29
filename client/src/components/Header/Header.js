@@ -1,3 +1,4 @@
+/* eslint-disable no-lonely-if */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -44,7 +45,9 @@ const mainNav = [
 
 const avatar = "https://demos.themeselection.com/marketplace/materio-mui-react-nextjs-admin-template/demo-1/images/avatars/1.png";
 
-function Header() {
+function Header(props) {
+    const { scrollHeight } = props;
+    console.log("Header scrollHeight: ", scrollHeight);
     const [Isactive, setIsActive] = useState(false);
     const [isShow, setIsShow] = React.useState(false);
     const [showCart, setShowCart] = React.useState(false);
@@ -82,10 +85,14 @@ function Header() {
     // scroll
     React.useEffect(() => {
         window.addEventListener(("scroll"), () => {
-            if (document.body.scrollTop > window.innerHeight || document.documentElement.scrollTop > window.innerHeight) {
-                setIsShow(true);
+            if (scrollHeight) {
+                if (document.body.scrollTop > scrollHeight || document.documentElement.scrollTop > scrollHeight) {
+                    setIsShow(true);
+                } else {
+                    setIsShow(false);
+                }
             } else {
-                setIsShow(false);
+                setIsShow(true);
             }
         });
 
@@ -145,7 +152,7 @@ function Header() {
                                 {
                                     myEmail
                                         ? (
-                                            <div className={cx("sing-in")}>
+                                            <div className={cx("sign-in")}>
                                                 <img src={avatar} alt="" />
                                                 {/* <div>
                                                     {myEmail}

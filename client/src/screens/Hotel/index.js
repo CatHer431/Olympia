@@ -129,13 +129,13 @@ function Hotel() {
     }, []);
 
     return (
-        <Layout>
+        <Layout scrollHeight={window.innerHeight}>
             <section className={cx("shop")}>
                 {/* <div className={cx("shop-area")}> */}
                 <div>
                     <div className={cx("shop-area")}>
                         <div className={cx("shop-area__title")}>
-                            <h2>Hotels</h2>
+                            <h2>Hotel for memorable</h2>
                             <ul>
                                 <li>
                                     Home

@@ -6,6 +6,7 @@ const reservationRoutes = require('./routes/reservationRoutes');
 const roomRoutes = require('./routes/roomRoutes');
 const hotelRoutes = require('./routes/hotelRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
+const rewardPointRoutes = require('./routes/rewardPointRoutes');
 const cors = require('cors');
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(authRoutes);
 app.use(reservationRoutes);
 app.use(hotelRoutes);
 app.use(paymentRoutes);
+app.use(rewardPointRoutes);
 
 const port = process.env.PORT || 8080;
 

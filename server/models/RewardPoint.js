@@ -32,13 +32,15 @@ rewardPointSchema.statics.getByEmail = async (email) => {
 }
 
 rewardPointSchema.statics.updateRewardPoint = async (email, rewardPoint) => {
-    await RewardPoint.findOneAndUpdate({ email: email }, 
+    const result = await RewardPoint.findOneAndUpdate({ email: email },
         {
-            user_id: rewardPoint.user_id, 
+            user_id: rewardPoint.user_id,
             email: email,
-            point: rewardPoint.point
-        }
+            point: rewardPoint
+        },
+        { new: true }
     );
+    return result;
 }
 
 const RewardPoint = mongoose.model('rewardPoints', rewardPointSchema);

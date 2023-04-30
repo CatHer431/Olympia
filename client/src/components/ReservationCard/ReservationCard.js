@@ -18,9 +18,21 @@ function ReservationCard(props) {
     console.log("startDate: ", startDate);
     const checkIn = new Date(startDate);
     const options = { timeZone: "EDT", month: "long", day: "numeric", year: "numeric" };
-    const formattedCheckIn = checkIn.toLocaleDateString("en-US", {
+    let formattedCheckIn = checkIn.toLocaleDateString("en-US", {
         options
     });
+    const regex = /^(\d{4})-(\d{2})-(\d{2})T.*$/;
+    const match = regex.exec(startDate);
+
+    if (match) {
+        const month = match[2];
+        const day = match[3];
+        const year = match[1];
+        formattedCheckIn = `${month}/${day}/${year}`;
+        console.log(formattedCheckIn);
+    } else {
+        console.error("Invalid date string");
+    }
     return (
         <div className={cx("content")}>
             <img src={images[0]} alt="hotel" />

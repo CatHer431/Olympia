@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 import React from "react";
 import classNames from "classnames/bind";
 import classes from "./ReservationCard.module.scss";
@@ -14,12 +15,11 @@ function ReservationCard(props) {
         id
     } = data;
     const { name, images } = hotel;
-
+    console.log("startDate: ", startDate);
     const checkIn = new Date(startDate);
+    const options = { timeZone: "EDT", month: "long", day: "numeric", year: "numeric" };
     const formattedCheckIn = checkIn.toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric"
+        options
     });
     return (
         <div className={cx("content")}>

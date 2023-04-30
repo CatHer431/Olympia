@@ -32,14 +32,15 @@ paymentSchema.statics.deleteByReservationId = async (id) => {
 
 // get reservation by id
 paymentSchema.statics.getByReservationId = async (id) => {
-    const result = await Payment.findOne({ reservation_id: id });
+    console.log("id payment model: ", id);
+    const result = await Payment.findOne({ reservation_id: id.toString() });
     return result;
 }
 
 paymentSchema.statics.updatePayment = async (id, payment) => {
-    await Payment.findOneAndUpdate({ reservation_id: id }, 
+    await Payment.findOneAndUpdate({ reservation_id: id },
         {
-            reservation_id: id, 
+            reservation_id: id,
             email: payment.email,
             status: payment.status
         }

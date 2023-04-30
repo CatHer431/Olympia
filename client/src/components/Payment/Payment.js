@@ -22,6 +22,7 @@ import { TOAST_TYPE } from "constants/global";
 export default function Payment(props) {
     const toast = useToast();
     const { data, onPayment } = props;
+    console.log("data: ", data);
     const [cardNumber, setCardNumber] = useState("");
     const [cardNumberValid, setCardNumberValid] = useState(false);
     const [expire, setExpire] = useState("");
@@ -74,7 +75,7 @@ export default function Payment(props) {
         event.preventDefault();
         if (cardNumberValid && expireValid && cvvValid) {
             try {
-                await onPayment(data.reservation_id);
+                await onPayment(data);
                 toast("Your reservation has been paid", null, TOAST_TYPE.SUCCESS);
                 setTimeout(() => {
                     window.location.href = "http://localhost:3000/my-reservation";

@@ -57,6 +57,7 @@ const getReservation = async (req, res) => {
         const { id } = req.body; // get id in body
 
         const result = await Reservation.getById(id); // get by id
+        console.log("getReservation: ", result);
         if (result) {
             res.status(200).json({ result: result }); // success
         } else {

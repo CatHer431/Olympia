@@ -74,6 +74,7 @@ function Booking() {
     // const [card3Visible, setCard3Visible] = useState(true);
     const [responseReservation, setResponseReservation] = useState();
     const { state } = useLocation();
+    console.log("state: ", state);
     const [data, setData] = useState({});
     const myEmail = JSON.parse(localStorage.getItem("email"));
     const toast = useToast();
@@ -104,8 +105,11 @@ function Booking() {
 
     const postData = async (params) => {
         const response = await request.post("reservation", params);
-        setResponseReservation(response.data);
-        console.log("response: ", responseReservation);
+        setResponseReservation(response.data.reservation_id);
+        console.log("response for new reservation: ", response);
+        console.log("response for new reservation data: ", response.data);
+        console.log("response for new reservation data id: ", response.data.reservation_id);
+        console.log("response reservation: ", responseReservation);
         // console.log("response data: ", responseReservation.data);
         toast(
             "Booking Success!",
@@ -379,7 +383,7 @@ function Booking() {
                                             </div>
                                         </div>
                                         <div>or </div>
-                                        <RedeemPoints totalPrice={totalPrice} />
+                                        <RedeemPoints totalPrice={totalPrice} data={responseReservation} onPayment={handlePayment} />
                                     </div>
                                 )}
                             </div>

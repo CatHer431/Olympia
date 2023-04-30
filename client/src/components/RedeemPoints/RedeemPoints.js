@@ -7,12 +7,14 @@ import { useToast } from "hooks";
 import { TOAST_TYPE } from "constants/global";
 
 export default function RedeemPoints(props) {
-    const { totalPrice } = props;
+    const { totalPrice, data, onPayment } = props;
     const toast = useToast();
     console.log("props: ", totalPrice);
     const email = localStorage.getItem("email") ? localStorage.getItem("email").replace(/"/g, "") : "";
     const [points, setPoints] = useState(0);
     const [isPaid, setIsPaid] = useState(false);
+
+    console.log("id redeem: ", data);
 
     useEffect(() => {
         async function fetchData() {
@@ -29,6 +31,7 @@ export default function RedeemPoints(props) {
     const handleRedeem = async () => {
         try {
             const response = await request.put("updatePoint", { email, rewardPoint: points - totalPrice * 10 });
+            await onPayment(data);
             console.log("response: ", response.data.result);
             setPoints(response.data.result);
             toast(

@@ -90,7 +90,8 @@
                     // color: pink;
                     cursor: pointer;
                     // background-color: #136F63;
-                    color: #d32f2f;
+                    // color: #d32f2f;
+                    color: #FBB403;
                 }
             }
         }
@@ -227,7 +228,7 @@
                 // background-color: #136F63;
                 // margin-left: 20px;
                 padding: 3px 10px;
-                border-radius: 12px;
+                border-radius: 8px;
 
                 @include mixin.moblie {
                     display: none;

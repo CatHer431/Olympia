@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-boolean-value */
+/* eslint-disable object-curly-newline */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -5,6 +7,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-unsafe-optional-chaining */
 import React from "react";
+// import { Link } from "react-scroll";
 import classNames from "classnames/bind";
 // import { db } from "config/config";
 // import { useDispatch } from "react-redux";
@@ -12,7 +15,7 @@ import request from "utils/request";
 import dayjs from "dayjs";
 
 import {
-    DatePicker, Form, InputNumber, Button, Input
+    DatePicker, Form, InputNumber, Input
 } from "antd";
 
 import classes from "./Search.module.scss";
@@ -58,7 +61,7 @@ function Search(props) {
 
     return (
         <div className={cx("container__search")}>
-            <h2>Where to?</h2>
+            {/* <h2>Where to?</h2> */}
             <div className={cx("container__search-content")}>
                 <Form
                     name="basic"
@@ -70,7 +73,10 @@ function Search(props) {
                     }}
                     style={{
                         width: "100%",
-                        display: "flex"
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "center",
+                        marginTop: "10px"
                     }}
                     initialValues={{
                         remember: true
@@ -88,7 +94,7 @@ function Search(props) {
                                 message: "Please input your place!"
                             }
                         ]}
-                        style={{ width: "30%" }}
+                        style={{ width: "27%" }}
                     >
                         <Input />
                     </Form.Item>
@@ -98,7 +104,7 @@ function Search(props) {
                         {...rangeConfig}
                         style={{ width: "30%" }}
                     >
-                        <RangePicker />
+                        <RangePicker style={{ width: "240px" }} />
                     </Form.Item>
                     <Form.Item
                         label="Travelers"
@@ -107,7 +113,7 @@ function Search(props) {
                         name="travellers"
                     >
                         <InputNumber
-                            style={{ width: "115px" }}
+                            style={{ width: "120px", color: "red" }}
                             min={1}
                             max={100}
                             defaultValue={1}
@@ -118,15 +124,18 @@ function Search(props) {
                     </Form.Item>
                     <Form.Item
                         wrapperCol={{
-                            offset: 8,
+                            // offset: 18,
                             span: 16
                         }}
-                        // style={{ width: "20%", backgroundColor: "pink" }}
                         label=" "
                     >
-                        <Button type="primary" htmlType="submit">
+                        {/* <Link to="hotelList" spy={true}> */}
+                        <button className={cx("searchButton")} type="submit">
+                            {/* {onFinish && ( */}
                             Search
-                        </Button>
+                            {/* )} */}
+                        </button>
+                        {/* </Link> */}
                     </Form.Item>
                 </Form>
 

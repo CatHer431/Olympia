@@ -1,3 +1,8 @@
+/* eslint-disable react/jsx-boolean-value */
+/* eslint-disable no-return-assign */
+/* eslint-disable no-shadow */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable object-curly-newline */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable no-nested-ternary */
@@ -10,6 +15,8 @@
 /* eslint-disable react/button-has-type */
 import Layout from "components/Layout";
 import React, { useEffect, useState } from "react";
+// import { animateScroll } from "react-scroll";
+import { Link } from "react-scroll";
 
 import classNames from "classnames/bind";
 import request from "utils/request";
@@ -56,6 +63,14 @@ function Hotel() {
     const [productPerPage] = React.useState(8);
 
     const ref = React.useRef();
+    // const handleExplore = () => {
+    //     animateScroll.scrollTo("#explore-id", {
+    //         duration: 500,
+    //         delay: 100,
+    //         smooth: true
+    //         // offset: -70
+    //     });
+    // };
     // onclick outside
     const getData = async () => {
         const response = await request.get("hotels");
@@ -129,34 +144,37 @@ function Hotel() {
     }, []);
 
     return (
-        <Layout scrollHeight={window.innerHeight}>
+        <Layout scrollHeight={(window.innerHeight) * 0.6}>
             <section className={cx("shop")}>
                 {/* <div className={cx("shop-area")}> */}
                 <div>
                     <div className={cx("shop-area")}>
                         <div className={cx("shop-area__title")}>
-                            <h2>Hotel for memorable</h2>
-                            <ul>
-                                <li>
-                                    Home
-                                </li>
-                                <li>
-                                    <i className={cx("bx bx-happy-heart-eyes")} />
-                                </li>
-                                <li>
-                                    Hotels
-                                </li>
-                            </ul>
+                            <h2>Plan your</h2>
+                            <h2> next getaway</h2>
+                            <div>Make your hotel feel like home</div>
+                            <button><Link to="explore" spy={true}> Explore Now</Link></button>
+                        </div>
+                        <div className={cx("search")}>
                         </div>
                         <div className={cx("dark-overlay")}></div>
                         <video src={Video} autoPlay loop muted preload="auto" />
                     </div>
                 </div>
-                <div className={cx("shop-content")}>
+                <div className={cx("shop-content")} style={{ position: "relative", top: "-135px" }}>
                     <div className={cx("container")}>
                         <div className={cx("shop-content__top")}>
-                            <Search handleSearch={handleSearch} handleLoading={handleLoading} handleCloseLoading={handleCloseLoading} />
-                            <div className={cx("right")}>
+                            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "white", boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.1)", width: "80%", borderRadius: "10px", height: "150px" }}>
+                                    <div style={{ flex: "1" }}>
+                                        <Search handleSearch={handleSearch} handleLoading={handleLoading} handleCloseLoading={handleCloseLoading} />
+                                    </div>
+                                </div>
+                            </div>
+                            {/* <div id="explore">
+                                <img src="https://www.rd.com/wp-content/uploads/2020/04/GettyImages-1166654799-scaled.jpg?fit=700,468" />
+                            </div> */}
+                            <div className={cx("right")} style={{ marginTop: "120px" }}>
                                 <div className={cx("sort")}>
                                     <div ref={ref} className={cx("sort__select")}>
                                         <span>{nameSort || "Default Sorting"}</span>
@@ -179,7 +197,7 @@ function Hotel() {
                                 </div>
                             </div>
                         </div>
-                        <div className={cx("shop-list")}>
+                        <div className={cx("shop-list")} id="hotelList">
                             {loading ? <Loading />
                                 : data.length > 0
                                     ? (

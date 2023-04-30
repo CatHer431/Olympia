@@ -1,13 +1,15 @@
+/* eslint-disable object-curly-newline */
 import React from "react";
 import ButtonScroll from "./ButtonScroll/ButtonScroll";
 import Footer from "./Footer";
 import { Header } from "./Header";
+// import classNames from "classnames/bind";
+// import classes from "./Layout.module.scss";
+
+// const cx = classNames.bind(classes);
 
 function Layout(props) {
-    console.log("Layout props: ", props);
     const { scrollHeight, children } = props;
-    console.log("Layout scrollHeight: ", scrollHeight);
-    console.log("is scrollHeight: ", scrollHeight == null);
     return (
         <>
             <Header scrollHeight={scrollHeight} />
@@ -17,7 +19,6 @@ function Layout(props) {
             <Footer />
             <ButtonScroll />
         </>
-
     );
 }
 export default Layout;

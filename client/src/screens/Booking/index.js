@@ -7,6 +7,7 @@
 import Layout from "components/Layout";
 import Payment from "components/Payment/Payment";
 import Card from "components/Payment/Card";
+import RedeemPoints from "components/RedeemPoints/RedeemPoints";
 
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -67,8 +68,10 @@ const validatePhone = (rule, value, callback) => {
 
 function Booking() {
     const [card1Visible, setCard1Visible] = useState(true);
+    // const [card1Visible, setCard1Visible] = useState(false);
     const [card2Visible, setCard2Visible] = useState(false);
     const [card3Visible, setCard3Visible] = useState(false);
+    // const [card3Visible, setCard3Visible] = useState(true);
     const [responseReservation, setResponseReservation] = useState();
     const { state } = useLocation();
     const [data, setData] = useState({});
@@ -84,6 +87,8 @@ function Booking() {
         setCard2Visible(false);
         setCard3Visible(true);
     };
+
+    // setCard3Visible(true);
 
     React.useEffect(() => {
         window.scrollTo(0, 0);
@@ -373,6 +378,8 @@ function Booking() {
                                                 )}
                                             </div>
                                         </div>
+                                        <div>or </div>
+                                        <RedeemPoints totalPrice={totalPrice} />
                                     </div>
                                 )}
                             </div>

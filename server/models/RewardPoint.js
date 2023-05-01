@@ -32,6 +32,8 @@ rewardPointSchema.statics.getByEmail = async (email) => {
 }
 
 rewardPointSchema.statics.updateRewardPoint = async (email, rewardPoint) => {
+    console.log("email in RewardPoint model: ", email);
+    console.log("reward Point in RewardPoint model: ", rewardPoint);
     const result = await RewardPoint.findOneAndUpdate({ email: email },
         {
             user_id: rewardPoint.user_id,

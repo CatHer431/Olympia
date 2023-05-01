@@ -32,7 +32,7 @@ paymentSchema.statics.deleteByReservationId = async (id) => {
 
 // get reservation by id
 paymentSchema.statics.getByReservationId = async (id) => {
-    console.log("id payment model: ", id);
+    console.log("id payment model: ", id.toString());
     const result = await Payment.findOne({ reservation_id: id.toString() });
     return result;
 }

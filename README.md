@@ -15,7 +15,7 @@ To set up a server, please follow the instructions below.
 2. Install latest version of [NodeJS](https://nodejs.org/en/)
 3. Go into the root folder
    ```
-    % cd olympia
+    % cd Olympia
    ```
 4. Install JavaScript dependencies
    ```
@@ -27,7 +27,7 @@ To set up a server, please follow the instructions below.
    ```
 6. Install dependencies for frontend
    ```
-   % npm install
+   % yarn
    ```
 7. Go into `server` folder
    ```
@@ -45,7 +45,7 @@ To set up a server, please follow the instructions below.
 9. Start React on port 3000
    ```
    % cd client
-   % npm start
+   % yarn start
    ```
 
 ## Backend Team
@@ -53,7 +53,7 @@ To set up a server, please follow the instructions below.
 9. Run Backend part
    ```
    % cd server
-   % npm run dev
+   % npm start
    ```
 10. Open a web browser and navigate to http://localhost:3000/
 

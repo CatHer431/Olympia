@@ -14,9 +14,10 @@ const payReservation = async (req, res) => {
             payment.status = 1;
             await Payment.updatePayment(reservationId, payment);
             const rewardPoint = await RewardPoint.getByEmail(payment.email);
+            console.log("rewardPoint in payReservation: ", rewardPoint);
             if (rewardPoint) {
-                rewardPoint.point += 100;
-                await RewardPoint.updateRewardPoint(payment.email, rewardPoint);
+                const newPoint = rewardPoint.point + 100;
+                await RewardPoint.updateRewardPoint(payment.email, newPoint);
             } else {
                 const user = await User.getByEmail(payment.email);
                 await RewardPoint.create({ user_id: user._id, email: payment.email, point: 100 });

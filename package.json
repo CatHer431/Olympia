@@ -34,6 +34,7 @@
     "yargs-parser": "^21.1.1"
   },
   "scripts": {
+    "start": "node index.js",
     "dev": "concurrently \"cd server && npm start\" \"cd client && yarn start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

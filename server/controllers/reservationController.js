@@ -87,7 +87,7 @@ const cancelReservation = async (req, res) => {
             console.log("email: ", payment.email);
             const rewardPoint = await RewardPoint.getByEmail(payment.email);
             if (rewardPoint.point >= 100) {
-                await RewardPoint.updateRewardPoint(payment.email, rewardPoint.point - 100);
+                await RewardPoint.updateRewardPoint(payment.email, rewardPoint.point - 100); // update reward point
             } else {
                 await RewardPoint.updateRewardPoint(payment.email, 0);
             }

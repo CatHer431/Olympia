@@ -281,7 +281,7 @@ function ProductView({ product }) {
                         </div> */}
                     </div>
                     <div className={cx("col-lg-6 ")}>
-                        <div
+                        {/* <div
                             className={cx("col-lg-8")}
                             style={{ float: "right", marginTop: 35 }}
                         >
@@ -302,7 +302,7 @@ function ProductView({ product }) {
                                 {", "}
                                 {nation}
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

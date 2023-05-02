@@ -64,8 +64,8 @@ function HotelCard(props) {
                     </div>
                     <div className={cx("content-footer")}>
                         <div className={cx("content__left")}>
-                            <p>Fully refundable</p>
-                            <p>Reserve now, pay later</p>
+                            {/* <p>Fully refundable</p>
+                            <p>Reserve now, pay later</p> */}
                             <div className={cx("icon-moon")}>
                                 <img src={iconMoon} alt="" width="18px" height="18px" />
                                 {" "}

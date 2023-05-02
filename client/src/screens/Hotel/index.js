@@ -58,6 +58,7 @@ function Hotel() {
     const [nameSort, setNameSort] = React.useState("");
     const [showDrop, setShowDrop] = React.useState(false);
     const [loading, setLoading] = useState(false);
+    const [isFilterPetClicked, setIsFilterPetClicked] = useState(false);
 
     const [currentPage, setCurrentPage] = React.useState(1);
     const [productPerPage] = React.useState(8);
@@ -116,6 +117,16 @@ function Hotel() {
         }
         // const action = sort(type);
         // dispatch(action);
+    };
+
+    const filterHandleChange = () => {
+        setIsFilterPetClicked(true);
+        const filteredData = data.filter((item) => {
+            if (item.isPetAllowed) {
+                return item;
+            }
+        });
+        setData(filteredData);
     };
 
     const handleSearch = (item) => {
@@ -194,6 +205,13 @@ function Hotel() {
                                             ))
                                         }
                                     </ul>
+                                </div>
+                                <div className={cx("filter")}>
+                                    <div>Show</div>
+                                    <div className={cx("petFilter")}>
+                                        <button className={!isFilterPetClicked ? cx("defaultPetClick") : cx("activePetClick")} onClick={filterHandleChange}>Pet allowed</button>
+                                        {/* <button isFilterPetClicked ? className={cx("defaultPetClick")} : cla className={isFilterPetClicked ? {cx("defaultPetClick")} : {cx("activePetClick")}} onClick={filterHandleChange}>Pet allowed</button> */}
+                                    </div>
                                 </div>
                             </div>
                         </div>

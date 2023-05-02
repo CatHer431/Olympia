@@ -26,8 +26,9 @@ function HotelCard(props) {
     const { data } = props;
     const {
         city, name, description,
-        images, rating, _id
+        images, rating, _id, isPetAllowed
     } = props.data;
+    console.log("HotelCard data: ", data);
     const navigate = useNavigate();
     // const addToCart = () => {
     //     if (userDetail) {
@@ -66,6 +67,7 @@ function HotelCard(props) {
                         <div className={cx("content__left")}>
                             {/* <p>Fully refundable</p>
                             <p>Reserve now, pay later</p> */}
+                            {isPetAllowed && (<p>Pet Allowed</p>)}
                             <div className={cx("icon-moon")}>
                                 <img src={iconMoon} alt="" width="18px" height="18px" />
                                 {" "}

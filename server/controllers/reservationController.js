@@ -3,6 +3,7 @@ const User = require('../models/User');
 const Room = require('../models/Room');
 const Hotel = require('../models/Hotel');
 const Payment = require('../models/Payment');
+const RewardPoint = require('../models/RewardPoint');
 
 // create new reservation
 const newReservation = async (req, res) => {
@@ -82,11 +83,20 @@ const cancelReservation = async (req, res) => {
             await Reservation.deleteById(id); // delete by id
             payment.status = 2;
             await Payment.updatePayment(id, payment);
+            console.log("Payment: ", payment);
+            console.log("email: ", payment.email);
+            const rewardPoint = await RewardPoint.getByEmail(payment.email);
+            if (rewardPoint.point >= 100) {
+                await RewardPoint.updateRewardPoint(payment.email, rewardPoint.point - 100); // update reward point
+            } else {
+                await RewardPoint.updateRewardPoint(payment.email, 0);
+            }
             res.status(200).json({ result: "Success!" });
         } else {
             res.status(400).json({ result: "Not found" });
         }
     } catch (err) {
+        console.log(err);
         res.status(400).json({ result: "Error!" });
     }
 }

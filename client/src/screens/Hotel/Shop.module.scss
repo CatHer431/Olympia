@@ -129,6 +129,7 @@
             .right {
                 display: flex;
 
+
                 .sort {
 
                     position: relative;
@@ -176,6 +177,52 @@
                             transform: translateY(0);
                         }
                     }
+                }
+                .filter {
+                    display: flex;
+                    align-items: center;
+                    margin-left: 100px;
+
+                    .petFilter {
+                        margin-left: 20px;
+
+                        .defaultPetClick {
+                            padding: 3px 10px;
+                            border-color: #ffc107;
+                            background-color: white;
+                            border-style: solid;
+                            box-shadow: none;
+                            border-radius: 8px;
+                        }
+                        .defaultPetClick:hover {
+                            border: none;
+                            background-color: #ffc107;
+                            color: white;
+                        }
+
+                        .activePetClick {
+                            padding: 3px 10px;
+                            border: none;
+                            background-color: #ffc107;
+                            color: white;
+                            box-shadow: none;
+                            border-radius: 8px;
+                        }
+                    }
+
+                    // button {
+                    //     padding: 3px 10px;
+                    //     border-color: #ffc107;
+                    //     background-color: white;
+                    //     box-shadow: none;
+                    //     border-radius: 8px;
+                    // }
+
+                    // button:hover {
+                    //     border: none;
+                    //     background-color: #ffc107;
+                    //     color: white;
+                    // }
                 }
             }
         }

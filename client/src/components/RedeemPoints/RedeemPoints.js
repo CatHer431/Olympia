@@ -46,11 +46,39 @@ export default function RedeemPoints(props) {
     };
 
     return (
-        <>
-            <h4>Redeeming your Reward Points</h4>
-            <div>Your current Reward Point: {points}</div>
-            {totalPrice * 10 > points ? <div>You do not have enough points to redeem</div> : (!isPaid ? <button type="submit" onClick={handleRedeem}>Redeem</button> : <div>Thank you for using our services</div>)}
 
-        </>
+        <div style={{
+            position: "relative", padding: "20px 0", marginBottom: "20px"
+        }}
+        >
+            <div>
+                <h4 style={{
+                    padding: "16px 20px", fontSize: "20px", fontWeight: "600", lineHeight: "1.25", borderBottomWidth: "1px", borderStyle: "solid", borderColor: "#cccccc", borderTop: "none", borderRight: "none", borderLeft: "none"
+                }}
+                >Redeeming your Reward Points
+                </h4>
+                <div style={{ padding: "16px 20px" }}>
+                    <div style={{ color: "red", fontSize: "0.9em" }}>Your current Reward Point: {points}</div>
+                    {totalPrice * 10 > points ? <div style={{ color: "red", fontSize: "0.9em" }}>You do not have enough points to redeem</div> : (!isPaid ? (
+                        <button
+                            type="submit"
+                            style={{
+                                marginTop: "20px",
+                                backgroundColor: "#198754",
+                                border: "1px solid transparent",
+                                padding: "0.375rem 0.75rem",
+                                fontSize: "1rem",
+                                borderRadius: "0.25rem",
+                                color: "white",
+                                borderColor: "#198754"
+                            }}
+                            onClick={handleRedeem}
+                        >Redeem
+                        </button>
+                    ) : <div>Thank you for using our services</div>)}
+                </div>
+            </div>
+        </div>
+
     );
 }

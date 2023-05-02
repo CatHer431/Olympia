@@ -61,7 +61,7 @@ function SearchRoom(props) {
                 <Form
                     name="basic"
                     labelCol={{
-                        span: 8
+                        span: 20
                     }}
                     wrapperCol={{
                         span: 16
@@ -87,16 +87,17 @@ function SearchRoom(props) {
                         <RangePicker />
                     </Form.Item>
                     <Form.Item
-                        label="Travellers"
-                        name="travellers"
+                        label="Travelers"
+                        name="travelers"
                         style={{ width: "14%" }}
                     >
                         <InputNumber
+                            style={{ width: "120px", color: "red" }}
                             min={1}
                             max={100}
                             defaultValue={1}
                             onChange={onChange}
-                            formatter={(value) => `${value} travellers`}
+                            formatter={(value) => `${value} travelers`}
                         />
                     </Form.Item>
                     <Form.Item

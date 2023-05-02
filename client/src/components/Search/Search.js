@@ -39,6 +39,7 @@ function Search(props) {
     };
     const formatDate = (date) => dayjs(date).format("YYYY-MM-DD");
     const searchHotel = async (params) => {
+        console.log("search params: ", params);
         props.handleLoading();
         const response = await request.get("search/hotel", { params });
         props.handleCloseLoading();

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-tag-location */
 import React, { useState, useEffect } from "react";
 // import React from "react";
 // import { useParams } from "react-router-dom";
@@ -41,7 +42,7 @@ function MyReservation() {
         fetchData();
     }, []);
 
-    const handleCancelReservation = async (reservationId) => {
+    const handleCancelReservation = async (reservationId, totalPrice) => {
         try {
             const response = await request.delete("reservation", { data: { id: reservationId } });
             console.log("Reservation cancelled successfully: ", response.data);
@@ -51,7 +52,13 @@ function MyReservation() {
             );
             // Update the state with the new reservationData
             setReservationData(updatedReservationData);
-            toast("Your reservation has been cancelled", null, TOAST_TYPE.SUCCESS);
+            toast(<div>
+                {`$${totalPrice} is refunded`}
+                <br />
+                You have been charged $100 for canceling your reservation
+                <br />
+                Your reservation has been canceled
+            </div>, null, TOAST_TYPE.SUCCESS);
         } catch (error) {
             console.error("Failed to cancel reservation: ", error);
         }
@@ -99,6 +106,7 @@ function MyReservation() {
                                         <ReservationCard
                                             key={reservation.id}
                                             data={reservation}
+                                            totalPrice={reservation.totalPrice}
                                             onCancelReservation={handleCancelReservation}
                                         />
                                     ))

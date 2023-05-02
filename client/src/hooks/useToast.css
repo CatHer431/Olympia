@@ -1,0 +1,14 @@
+.Toastify__toast-container {
+    position: relative;
+  width: 500px !important;
+  /* background-color: pink; */
+}
+/* .Toastify__toast-container--top-right{
+    width: 500px;
+    /* background-color: pink; */
+/* }
+.Toastify {
+    width: 100%;
+    background-color: pink;
+} */ 
+

@@ -1,6 +1,7 @@
 import React from "react";
 import { toast } from "react-toastify";
 import { TOAST_POSITION, TOAST_TYPE } from "constants/global";
+import "./useToast.css";
 
 function MessageContent({ message, type }) {
     const icon = () => {
@@ -35,9 +36,9 @@ function MessageContent({ message, type }) {
     };
 
     return (
-        <div className="toast-container d-flex align-items-center">
+        <div className="toast-container d-flex align-items-center" style={{ width: "500px" }}>
             {icon()}
-            <div className="content">
+            <div className="content" style={{ width: "100%" }}>
                 <div>
                     {title()}
                 </div>
@@ -52,7 +53,7 @@ const useToast = () => (message, onclose, type = TOAST_TYPE.SUCCESS, position = 
     const options = {
         position,
         closeButton: false,
-        autoClose: 3000,
+        autoClose: 30000,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,

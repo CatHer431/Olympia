@@ -5,7 +5,7 @@
   "name": "olympia",
   "description": "",
   "version": "1.0.0",
-  "main": "client/src/App.js",
+  "main": "server/app.js",
   "dependencies": {
     "ansi-regex": "^5.0.1",
     "ansi-styles": "^4.3.0",
@@ -36,6 +36,7 @@
   },
   "scripts": {
     "dev": "concurrently \"cd server && npm start\" \"cd client && yarn start\"",
+    "start": "npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

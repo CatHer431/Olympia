@@ -55,9 +55,9 @@ function MyReservation() {
             toast(<div>
                 {`$${totalPrice} is refunded`}
                 <br />
-                $100 cancellation fee is made
+                You have been charged $100 for canceling your reservation
                 <br />
-                Your reservation has been cancelled
+                Your reservation has been canceled
             </div>, null, TOAST_TYPE.SUCCESS);
         } catch (error) {
             console.error("Failed to cancel reservation: ", error);

@@ -52,7 +52,7 @@ const useToast = () => (message, onclose, type = TOAST_TYPE.SUCCESS, position = 
     const options = {
         position,
         closeButton: false,
-        autoClose: 3000,
+        autoClose: 30000,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,

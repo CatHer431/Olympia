@@ -48,7 +48,7 @@ export default function RedeemPoints(props) {
     return (
 
         <div style={{
-            position: "relative", top: "20px", padding: "20px 0", border: "1px solid #cccccc", borderRadius: "4px", marginBottom: "20px"
+            position: "relative", padding: "20px 0", marginBottom: "20px"
         }}
         >
             <div>

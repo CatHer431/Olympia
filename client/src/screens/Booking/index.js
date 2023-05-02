@@ -383,7 +383,7 @@ function Booking() {
                                             </div>
                                         </div>
                                         <div>or </div>
-                                        <div>
+                                        <div className={cx("redeem")}>
                                             <RedeemPoints totalPrice={totalPrice} data={responseReservation} onPayment={handlePayment} />
                                         </div>
                                     </div>

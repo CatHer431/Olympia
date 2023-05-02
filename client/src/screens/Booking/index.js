@@ -383,7 +383,9 @@ function Booking() {
                                             </div>
                                         </div>
                                         <div>or </div>
-                                        <RedeemPoints totalPrice={totalPrice} data={responseReservation} onPayment={handlePayment} />
+                                        <div>
+                                            <RedeemPoints totalPrice={totalPrice} data={responseReservation} onPayment={handlePayment} />
+                                        </div>
                                     </div>
                                 )}
                             </div>

@@ -44,10 +44,12 @@ function ReservationCard(props) {
     }
     return (
         <div className={cx("content")}>
-            <img src={images[0]} alt="hotel" />
+            <div style={{ height: "120px", width: "120px" }}>
+                <img src={images[0]} alt="hotel" />
+            </div>
             <div className={cx("content-card")}>
                 <div className={cx("content-information")}>
-                    <div>{name}</div>
+                    <div style={{ fontWeight: "700" }}>{name}</div>
                     <div>
                         <ul>
                             <li>

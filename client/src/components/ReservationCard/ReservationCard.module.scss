@@ -7,6 +7,17 @@
                 height: 120px;
                 width: 120px;
                 border-radius: 20px;
+                -webkit-transform: scale(1);
+                transform: scale(1);
+                -webkit-transition: .3s ease-in-out;
+                transition: .3s ease-in-out;
+            }
+
+            img:hover {
+                 height: 120px;
+                width: 120px;
+                -webkit-transform: scale(1.1);
+	            transform: scale(1.1);
             }
 
             &-card {

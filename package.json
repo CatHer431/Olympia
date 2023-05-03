@@ -5,7 +5,7 @@
   "name": "olympia",
   "description": "",
   "version": "1.0.0",
-  "main": "server/app.js",
+  "main": "server/db.js",
   "dependencies": {
     "ansi-regex": "^5.0.1",
     "ansi-styles": "^4.3.0",
